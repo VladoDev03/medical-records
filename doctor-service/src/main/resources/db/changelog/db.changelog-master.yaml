@@ -1,0 +1,72 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: you
+      changes:
+        - createTable:
+            tableName: speciality
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: doctor
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: keycloak_id
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: doctor_has_speciality
+            columns:
+              - column:
+                  name: doctor_id
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_dhs_doctor
+                    references: doctor(id)
+              - column:
+                  name: speciality_id
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_dhs_speciality
+                    references: speciality(id)
+        - createIndex:
+            tableName: speciality
+            indexName: idx_speciality_name
+            columns:
+              - column:
+                  name: name
+        - createIndex:
+            tableName: doctor
+            indexName: idx_doctor_keycloak_id
+            columns:
+              - column:
+                  name: keycloak_id
+        - addPrimaryKey:
+            tableName: doctor_has_speciality
+            columnNames: doctor_id, speciality_id
+      rollback:
+        - dropTable:
+            tableName: doctor_has_speciality
+        - dropTable:
+            tableName: doctor
+        - dropTable:
+            tableName: speciality
