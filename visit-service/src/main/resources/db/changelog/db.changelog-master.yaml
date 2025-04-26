@@ -1,0 +1,119 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: you
+      changes:
+        - createTable:
+            tableName: visit
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: patient_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: doctor_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+        - createIndex:
+            tableName: visit
+            indexName: idx_visit_doctor
+            columns:
+              - column:
+                  name: doctor_id
+        - createTable:
+            tableName: sick_leave
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: days
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: visit_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_sick_leave_visit
+                    references: visit(id)
+                    deleteCascade: true
+              - column:
+                  name: start_date
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+        - createIndex:
+            tableName: sick_leave
+            indexName: idx_sick_leave_visit
+            columns:
+              - column:
+                  name: visit_id
+
+        - createTable:
+            tableName: diagnose
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+        - createTable:
+            tableName: visit_has_diagnose
+            columns:
+              - column:
+                  name: visit_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_visit_diagnose_visit
+                    references: visit(id)
+                    deleteCascade: true
+              - column:
+                  name: diagnose_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_visit_diagnose_diagnose
+                    references: diagnose(id)
+                    deleteCascade: true
+        - addPrimaryKey:
+            tableName: visit_has_diagnose
+            columnNames: visit_id, diagnose_id
+
+      rollback:
+        - dropTable:
+            tableName: visit_has_diagnose
+        - dropTable:
+            tableName: sick_leave
+        - dropTable:
+            tableName: diagnose
+        - dropTable:
+            tableName: visit
