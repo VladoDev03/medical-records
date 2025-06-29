@@ -35,7 +35,11 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authz -> authz
                         .requestMatchers(HttpMethod.GET, "/api/patients/**").hasAnyAuthority("patient")
+                        .requestMatchers(HttpMethod.GET, "/api/patients/**").hasAnyAuthority("doctor")
+                        .requestMatchers(HttpMethod.POST, "/api/patients/**").hasAnyAuthority("patient")
                         .requestMatchers(HttpMethod.POST, "/api/patients/**").hasAnyAuthority("doctor")
+                        .requestMatchers(HttpMethod.GET, "/api/patients/doctors").hasAnyAuthority("patient")
+                        .requestMatchers(HttpMethod.GET, "/api/patients/doctors").hasAnyAuthority("doctor")
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2

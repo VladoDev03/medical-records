@@ -2,6 +2,7 @@ package com.medical_records.patient_service.controller;
 
 import com.medical_records.patient_service.data.entity.Patient;
 import com.medical_records.patient_service.service.PatientService;
+import com.medical_records.patient_service.viewmodel.DoctorModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,5 +33,10 @@ public class PatientController {
         );
 
         return patientService.createPatient(patient);
+    }
+
+    @GetMapping("/doctors")
+    public List<DoctorModel> getDoctor() {
+        return patientService.getDoctors();
     }
 }
