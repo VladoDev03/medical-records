@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    config:
+      uri: http://config-server:8888
+      fail-fast: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery-server:8761/eureka/
+
+#server:
+#  port: 8080
+#spring:
+#  cloud:
+#    gateway:
+#      server:
+#        webflux:
+#          discovery:
+#            locator:
+#              enabled: true
+#              lower-case-service-id: true
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://discovery-server:8761/eureka/
+#  instance:
+#    instance-id: ${spring.application.name}:${instanceId:${random.value}}
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include=*:
+#      routes:
+#        - id: example-service
+#          uri: lb:http://EXAMPLE-SERVICE
+#          predicates:
+#            - Path=/api/examples/**
