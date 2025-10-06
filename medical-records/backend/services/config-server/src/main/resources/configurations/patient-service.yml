@@ -1,10 +1,10 @@
 server:
-  port: 8084
+  port: 8086
   shutdown: graceful
 
 spring:
   datasource:
-    url: jdbc:mysql://mysql:3306/doctor_service?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://mysql:3306/patient_service?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
