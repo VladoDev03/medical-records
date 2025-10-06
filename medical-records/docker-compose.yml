@@ -197,7 +197,7 @@ services:
       - medical-records-net
 
   kafka:
-    image: confluentinc/cp-kafka:latest
+    image: confluentinc/cp-kafka:6.2.1
     container_name: ms_kafka
     depends_on:
       - zookeeper
