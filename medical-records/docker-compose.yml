@@ -68,6 +68,30 @@ services:
       retries: 5
       start_period: 20s
 
+  doctor-service:
+    build:
+      context: ./backend/services/doctor-service
+      dockerfile: Dockerfile
+    container_name: doctor-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+      mysql:
+        condition: service_healthy
+    networks:
+      - medical-records-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8084/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+
   keycloak:
     image: quay.io/keycloak/keycloak:latest
     container_name: keycloak
@@ -133,13 +157,21 @@ services:
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mydb
+      MYSQL_DATABASE: doctor_service
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     ports:
       - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "mysql", "-uuser", "-ppassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - medical-records-net
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -152,6 +184,8 @@ services:
       - "8082:80"
     depends_on:
       - mysql
+    networks:
+      - medical-records-net
 
   mongo:
     image: mongo:6.0
