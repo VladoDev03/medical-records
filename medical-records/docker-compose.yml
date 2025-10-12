@@ -114,6 +114,27 @@ services:
       retries: 5
       start_period: 20s
 
+  prescription-service:
+    build:
+      context: ./backend/services/prescription-service
+      dockerfile: Dockerfile
+    container_name: prescription-service
+    ports:
+      - "8087:8087"
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+    networks:
+      - medical-records-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8087/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
   keycloak:
     image: quay.io/keycloak/keycloak:latest
     container_name: keycloak
@@ -186,7 +207,7 @@ services:
     networks:
       - medical-records-net
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "mysql", "-uuser", "-ppassword"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -213,9 +234,11 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpass
     ports:
-      - "27017:27017"
+      - "27018:27017"
     volumes:
       - mongo_data:/data/db
+    networks:
+      - medical-records-net
 
   mongo-express:
     image: mongo-express
@@ -228,6 +251,8 @@ services:
       - "8083:8081"
     depends_on:
       - mongo
+    networks:
+      - medical-records-net
 
   redis:
     image: redis/redis-stack-server:latest

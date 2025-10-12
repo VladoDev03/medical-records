@@ -17,10 +17,13 @@
 - API Gateway - 8080
 - PostgreSQL - 5432
 - MySql - 3307
-- MongoDb - 27017
+- MongoDb - 27018
 - Redis - 6379
 - Kafka - 9092
 - Zookeeper - 2181
+- Doctor Service - 8084
+- Patient Service - 8086
+- Prescription Service - 8087
 ### Setup
 Log in to Keycloak
 - Username or Email: admin
@@ -30,9 +33,9 @@ Log in to PgAdmin
 - Username or Email: admin@admin.com
 - Password: admin
 
-Connect to server
+Connect to server - PgAdmin
 - Click Add new connection
-- name: kafka
+- name: keycloak
 - Host name/address: keycloak-postgres
 - Maintenance database: keycloak
 - Username: keycloak
