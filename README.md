@@ -24,6 +24,7 @@
 - Doctor Service - 8084
 - Patient Service - 8086
 - Prescription Service - 8087
+- Visit Service - 8088
 ### Setup
 Log in to Keycloak
 - Username or Email: admin
