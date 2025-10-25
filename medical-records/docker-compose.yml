@@ -68,36 +68,13 @@ services:
       retries: 5
       start_period: 20s
 
-  # doctor-service:
-  #   build:
-  #     context: ./backend/services/doctor-service
-  #     dockerfile: Dockerfile
-  #   container_name: doctor-service
-  #   ports:
-  #     - "8084:8084"
-  #   depends_on:
-  #     discovery-server:
-  #       condition: service_healthy
-  #     config-server:
-  #       condition: service_healthy
-  #     mysql:
-  #       condition: service_healthy
-  #   networks:
-  #     - medical-records-net
-  #   healthcheck:
-  #     test: ["CMD", "curl", "-f", "http://localhost:8084/actuator/health"]
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 5
-  #     start_period: 20s
-
-  patient-service:
+  doctor-service:
     build:
-      context: ./backend/services/patient-service
+      context: ./backend/services/doctor-service
       dockerfile: Dockerfile
-    container_name: patient-service
+    container_name: doctor-service
     ports:
-      - "8086:8086"
+      - "8084:8084"
     depends_on:
       discovery-server:
         condition: service_healthy
@@ -108,11 +85,34 @@ services:
     networks:
       - medical-records-net
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8086/actuator/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8084/actuator/health"]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 20s
+
+  # patient-service:
+  #   build:
+  #     context: ./backend/services/patient-service
+  #     dockerfile: Dockerfile
+  #   container_name: patient-service
+  #   ports:
+  #     - "8086:8086"
+  #   depends_on:
+  #     discovery-server:
+  #       condition: service_healthy
+  #     config-server:
+  #       condition: service_healthy
+  #     mysql:
+  #       condition: service_healthy
+  #   networks:
+  #     - medical-records-net
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8086/actuator/health"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 20s
 
   # prescription-service:
   #   build:

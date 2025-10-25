@@ -12,6 +12,10 @@ spring:
           uri: lb://patient-service
           predicates:
             - Path=/api/patients/**
+        - id: doctors
+          uri: lb://doctor-service
+          predicates:
+            - Path=/api/doctors/**
 server:
   port: 8080
 eureka:

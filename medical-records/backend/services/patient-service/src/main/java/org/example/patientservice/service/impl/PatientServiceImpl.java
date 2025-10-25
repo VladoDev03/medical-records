@@ -1,12 +1,12 @@
 package org.example.patientservice.service.impl;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.example.patientservice.config.ModelMapperConfig;
 import org.example.patientservice.data.entity.Patient;
 import org.example.patientservice.data.repo.PatientRepository;
 import org.example.patientservice.dto.CreatePatientDto;
 import org.example.patientservice.dto.PatientDto;
+import org.example.patientservice.exception.EntityNotFoundException;
 import org.example.patientservice.service.contracts.PatientService;
 import org.springframework.stereotype.Service;
 

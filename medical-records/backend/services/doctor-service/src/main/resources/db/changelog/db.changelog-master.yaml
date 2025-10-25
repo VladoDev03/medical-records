@@ -8,7 +8,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: INT
+                  type: BIGINT
                   autoIncrement: true
                   constraints:
                     primaryKey: true
@@ -22,7 +22,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: INT
+                  type: BIGINT
                   autoIncrement: true
                   constraints:
                     primaryKey: true
@@ -31,19 +31,20 @@ databaseChangeLog:
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
+                    unique: true
         - createTable:
             tableName: doctor_has_speciality
             columns:
               - column:
                   name: doctor_id
-                  type: INT
+                  type: BIGINT
                   constraints:
                     nullable: false
                     foreignKeyName: fk_dhs_doctor
                     references: doctor(id)
               - column:
                   name: speciality_id
-                  type: INT
+                  type: BIGINT
                   constraints:
                     nullable: false
                     foreignKeyName: fk_dhs_speciality

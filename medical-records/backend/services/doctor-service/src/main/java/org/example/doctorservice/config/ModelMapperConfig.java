@@ -1,7 +1,7 @@
-package org.example.patientservice.config;
+package org.example.doctorservice.config;
 
-import org.example.patientservice.data.entity.Patient;
-import org.example.patientservice.dto.CreatePatientDto;
+import org.example.doctorservice.data.entity.Doctor;
+import org.example.doctorservice.dto.CreateDoctorDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
@@ -20,9 +20,9 @@ public class ModelMapperConfig {
                 .setMatchingStrategy(MatchingStrategies.STRICT)
                 .setSkipNullEnabled(true);
 
-        mapper.typeMap(CreatePatientDto.class,
-                        Patient.class)
-                .addMappings(m -> m.skip(Patient::setId));
+        mapper.typeMap(CreateDoctorDto.class,
+                        Doctor.class)
+                .addMappings(m -> m.skip(Doctor::setId));
 
         return mapper;
     }

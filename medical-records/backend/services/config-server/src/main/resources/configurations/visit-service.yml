@@ -34,7 +34,7 @@ management:
 
 eureka:
   instance:
-    hostname: discovery-server
+    hostname: visit-service
     instance-id: ${spring.application.name}:${instanceId:${random.value}}
 
   client:
