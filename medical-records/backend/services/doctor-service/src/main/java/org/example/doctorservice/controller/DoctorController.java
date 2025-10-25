@@ -2,8 +2,8 @@ package org.example.doctorservice.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.doctorservice.dto.CreateDoctorDto;
-import org.example.doctorservice.dto.DoctorDto;
+import org.example.doctorservice.dto.doctor.CreateDoctorDto;
+import org.example.doctorservice.dto.doctor.DoctorDto;
 import org.example.doctorservice.service.contracts.DoctorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,7 @@ public class DoctorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DoctorDto> getDoctor(@PathVariable Long id) {
+    public ResponseEntity<DoctorDto> getDoctor(@PathVariable long id) {
         DoctorDto doctor = doctorService.getDoctorById(id);
         return ResponseEntity.ok(doctor);
     }

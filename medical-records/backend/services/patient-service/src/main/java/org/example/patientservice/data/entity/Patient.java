@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "keycloak_id", nullable = false, unique = true)
     private String keycloakId;

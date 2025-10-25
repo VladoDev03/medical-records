@@ -1,7 +1,7 @@
 package org.example.doctorservice.config;
 
 import org.example.doctorservice.data.entity.Doctor;
-import org.example.doctorservice.dto.CreateDoctorDto;
+import org.example.doctorservice.dto.doctor.CreateDoctorDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;

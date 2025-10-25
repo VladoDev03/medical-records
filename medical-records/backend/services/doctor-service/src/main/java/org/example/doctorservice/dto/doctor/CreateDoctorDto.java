@@ -1,5 +1,6 @@
-package org.example.doctorservice.dto;
+package org.example.doctorservice.dto.doctor;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DoctorDto {
-    private long id;
+public class CreateDoctorDto {
+    @NotNull
     private String keycloakId;
 }

@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.example.doctorservice.config.ModelMapperConfig;
 import org.example.doctorservice.data.entity.Doctor;
 import org.example.doctorservice.data.repo.DoctorRepository;
-import org.example.doctorservice.dto.CreateDoctorDto;
-import org.example.doctorservice.dto.DoctorDto;
+import org.example.doctorservice.dto.doctor.CreateDoctorDto;
+import org.example.doctorservice.dto.doctor.DoctorDto;
 import org.example.doctorservice.exception.EntityNotFoundException;
 import org.example.doctorservice.service.contracts.DoctorService;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public DoctorDto getDoctorById(Long id) {
+    public DoctorDto getDoctorById(long id) {
         Doctor doctor = doctorRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Doctor not found with id: " + id));
 

@@ -24,7 +24,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDto getPatientById(Long id) {
+    public PatientDto getPatientById(long id) {
         Patient patient = patientRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Patient not found with id: " + id));
 
