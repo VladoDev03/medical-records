@@ -20,8 +20,7 @@ public class ModelMapperConfig {
                 .setMatchingStrategy(MatchingStrategies.STRICT)
                 .setSkipNullEnabled(true);
 
-        mapper.typeMap(CreatePatientDto.class,
-                        Patient.class)
+        mapper.typeMap(CreatePatientDto.class, Patient.class)
                 .addMappings(m -> m.skip(Patient::setId));
 
         return mapper;
