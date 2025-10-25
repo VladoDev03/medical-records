@@ -1,16 +1,16 @@
 services:
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: frontend
-    ports:
-      - "5173:5173"
-    depends_on:
-      api-gateway:
-        condition: service_healthy
-    networks:
-      - medical-records-net
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   container_name: frontend
+  #   ports:
+  #     - "5173:5173"
+  #   depends_on:
+  #     api-gateway:
+  #       condition: service_healthy
+  #   networks:
+  #     - medical-records-net
 
   config-server:
     build:
@@ -68,28 +68,28 @@ services:
       retries: 5
       start_period: 20s
 
-  doctor-service:
-    build:
-      context: ./backend/services/doctor-service
-      dockerfile: Dockerfile
-    container_name: doctor-service
-    ports:
-      - "8084:8084"
-    depends_on:
-      discovery-server:
-        condition: service_healthy
-      config-server:
-        condition: service_healthy
-      mysql:
-        condition: service_healthy
-    networks:
-      - medical-records-net
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8084/actuator/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 20s
+  # doctor-service:
+  #   build:
+  #     context: ./backend/services/doctor-service
+  #     dockerfile: Dockerfile
+  #   container_name: doctor-service
+  #   ports:
+  #     - "8084:8084"
+  #   depends_on:
+  #     discovery-server:
+  #       condition: service_healthy
+  #     config-server:
+  #       condition: service_healthy
+  #     mysql:
+  #       condition: service_healthy
+  #   networks:
+  #     - medical-records-net
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8084/actuator/health"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 20s
 
   patient-service:
     build:
@@ -114,111 +114,111 @@ services:
       retries: 5
       start_period: 20s
 
-  prescription-service:
-    build:
-      context: ./backend/services/prescription-service
-      dockerfile: Dockerfile
-    container_name: prescription-service
-    ports:
-      - "8087:8087"
-    depends_on:
-      discovery-server:
-        condition: service_healthy
-      config-server:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    networks:
-      - medical-records-net
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8087/actuator/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 20s
+  # prescription-service:
+  #   build:
+  #     context: ./backend/services/prescription-service
+  #     dockerfile: Dockerfile
+  #   container_name: prescription-service
+  #   ports:
+  #     - "8087:8087"
+  #   depends_on:
+  #     discovery-server:
+  #       condition: service_healthy
+  #     config-server:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_healthy
+  #   networks:
+  #     - medical-records-net
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8087/actuator/health"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 20s
 
-  visit-service:
-    build:
-      context: ./backend/services/visit-service
-      dockerfile: Dockerfile
-    container_name: visit-service
-    ports:
-      - "8088:8088"
-    depends_on:
-      discovery-server:
-        condition: service_healthy
-      config-server:
-        condition: service_healthy
-      mysql:
-        condition: service_healthy
-    networks:
-      - medical-records-net
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8088/actuator/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 20s
+  # visit-service:
+  #   build:
+  #     context: ./backend/services/visit-service
+  #     dockerfile: Dockerfile
+  #   container_name: visit-service
+  #   ports:
+  #     - "8088:8088"
+  #   depends_on:
+  #     discovery-server:
+  #       condition: service_healthy
+  #     config-server:
+  #       condition: service_healthy
+  #     mysql:
+  #       condition: service_healthy
+  #   networks:
+  #     - medical-records-net
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8088/actuator/health"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 20s
 
-  keycloak:
-    image: quay.io/keycloak/keycloak:latest
-    container_name: keycloak
-    environment:
-      KC_BOOTSTRAP_ADMIN_USERNAME: admin
-      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
-      KC_DB: postgres
-      KC_DB_URL_HOST: keycloak-postgres
-      KC_DB_URL_DATABASE: keycloak
-      KC_DB_USERNAME: keycloak
-      KC_DB_PASSWORD: keycloak
-    command: start-dev
-    ports:
-      - "8081:8080"
-    networks:
-      - medical-records-net
-    depends_on:
-      - keycloak-postgres
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/realms/master"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
+  # keycloak:
+  #   image: quay.io/keycloak/keycloak:latest
+  #   container_name: keycloak
+  #   environment:
+  #     KC_BOOTSTRAP_ADMIN_USERNAME: admin
+  #     KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+  #     KC_DB: postgres
+  #     KC_DB_URL_HOST: keycloak-postgres
+  #     KC_DB_URL_DATABASE: keycloak
+  #     KC_DB_USERNAME: keycloak
+  #     KC_DB_PASSWORD: keycloak
+  #   command: start-dev
+  #   ports:
+  #     - "8081:8080"
+  #   networks:
+  #     - medical-records-net
+  #   depends_on:
+  #     - keycloak-postgres
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8080/realms/master"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 30s
 
-  keycloak-postgres:
-    image: postgres:15
-    container_name: keycloak-postgres
-    environment:
-      POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: keycloak
-    ports:
-      - "5432:5432"
-    volumes:
-      - keycloak_postgres_data:/var/lib/postgresql/data
-    networks:
-      - medical-records-net
+  # keycloak-postgres:
+  #   image: postgres:15
+  #   container_name: keycloak-postgres
+  #   environment:
+  #     POSTGRES_DB: keycloak
+  #     POSTGRES_USER: keycloak
+  #     POSTGRES_PASSWORD: keycloak
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - keycloak_postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - medical-records-net
 
-  pgadmin:
-    image: dpage/pgadmin4:7
-    container_name: pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-    ports:
-      - "5050:80"
-    depends_on:
-      - keycloak-postgres
-    networks:
-      - medical-records-net
+  # pgadmin:
+  #   image: dpage/pgadmin4:7
+  #   container_name: pgadmin
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@admin.com
+  #     PGADMIN_DEFAULT_PASSWORD: admin
+  #   ports:
+  #     - "5050:80"
+  #   depends_on:
+  #     - keycloak-postgres
+  #   networks:
+  #     - medical-records-net
 
-  zipkin:
-    container_name: zipkin
-    image: openzipkin/zipkin
-    ports:
-      - "9411:9411"
-    networks:
-      - medical-records-net
+  # zipkin:
+  #   container_name: zipkin
+  #   image: openzipkin/zipkin
+  #   ports:
+  #     - "9411:9411"
+  #   networks:
+  #     - medical-records-net
 
   mysql:
     image: mysql:8.0
@@ -238,139 +238,139 @@ services:
       retries: 10
       start_period: 30s
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    environment:
-      PMA_HOST: mysql
-      PMA_USER: root
-      PMA_PASSWORD: root
-    ports:
-      - "8082:80"
-    depends_on:
-      - mysql
-    networks:
-      - medical-records-net
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: phpmyadmin
+  #   environment:
+  #     PMA_HOST: mysql
+  #     PMA_USER: root
+  #     PMA_PASSWORD: root
+  #   ports:
+  #     - "8082:80"
+  #   depends_on:
+  #     - mysql
+  #   networks:
+  #     - medical-records-net
 
-  mongo:
-    image: mongo:6.0
-    container_name: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: rootpass
-    ports:
-      - "27018:27017"
-    volumes:
-      - mongo_data:/data/db
-    networks:
-      - medical-records-net
+  # mongo:
+  #   image: mongo:6.0
+  #   container_name: mongo
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: root
+  #     MONGO_INITDB_ROOT_PASSWORD: rootpass
+  #   ports:
+  #     - "27018:27017"
+  #   volumes:
+  #     - mongo_data:/data/db
+  #   networks:
+  #     - medical-records-net
 
-  mongo-express:
-    image: mongo-express
-    container_name: mongo-express
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: rootpass
-      ME_CONFIG_MONGODB_SERVER: mongo
-    ports:
-      - "8083:8081"
-    depends_on:
-      - mongo
-    networks:
-      - medical-records-net
+  # mongo-express:
+  #   image: mongo-express
+  #   container_name: mongo-express
+  #   environment:
+  #     ME_CONFIG_MONGODB_ADMINUSERNAME: root
+  #     ME_CONFIG_MONGODB_ADMINPASSWORD: rootpass
+  #     ME_CONFIG_MONGODB_SERVER: mongo
+  #   ports:
+  #     - "8083:8081"
+  #   depends_on:
+  #     - mongo
+  #   networks:
+  #     - medical-records-net
 
-  redis:
-    image: redis/redis-stack-server:latest
-    container_name: redis
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-    networks:
-      - medical-records-net
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-      start_period: 5s
+  # redis:
+  #   image: redis/redis-stack-server:latest
+  #   container_name: redis
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis_data:/data
+  #   networks:
+  #     - medical-records-net
+  #   healthcheck:
+  #     test: ["CMD", "redis-cli", "ping"]
+  #     interval: 5s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 5s
 
-  redisinsight:
-    image: redis/redisinsight:latest
-    container_name: redisinsight
-    ports:
-      - "5540:5540"
-    depends_on:
-      - redis
-    networks:
-      - medical-records-net
+  # redisinsight:
+  #   image: redis/redisinsight:latest
+  #   container_name: redisinsight
+  #   ports:
+  #     - "5540:5540"
+  #   depends_on:
+  #     - redis
+  #   networks:
+  #     - medical-records-net
 
-  kafka:
-    image: confluentinc/cp-kafka:6.2.1
-    container_name: ms_kafka
-    depends_on:
-      - zookeeper
-    ports:
-      - "9092:9092"
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://ms_kafka:9092,PLAINTEXT_HOST://localhost:9092
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:29092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
-    networks:
-      - medical-records-net
+  # kafka:
+  #   image: confluentinc/cp-kafka:6.2.1
+  #   container_name: ms_kafka
+  #   depends_on:
+  #     - zookeeper
+  #   ports:
+  #     - "9092:9092"
+  #   environment:
+  #     KAFKA_BROKER_ID: 1
+  #     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  #     KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+  #     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://ms_kafka:9092,PLAINTEXT_HOST://localhost:9092
+  #     KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:29092
+  #     KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+  #     KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+  #     KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+  #   networks:
+  #     - medical-records-net
 
-  kafka-ui:
-    image: provectuslabs/kafka-ui:latest
-    container_name: kafka-ui
-    depends_on:
-      - kafka
-    ports:
-      - "8085:8080"
-    environment:
-      KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: ms_kafka:9092
-      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
-    networks:
-      - medical-records-net
+  # kafka-ui:
+  #   image: provectuslabs/kafka-ui:latest
+  #   container_name: kafka-ui
+  #   depends_on:
+  #     - kafka
+  #   ports:
+  #     - "8085:8080"
+  #   environment:
+  #     KAFKA_CLUSTERS_0_NAME: local
+  #     KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: ms_kafka:9092
+  #     KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+  #   networks:
+  #     - medical-records-net
 
-  zookeeper:
-    image: confluentinc/cp-zookeeper:latest
-    container_name: zookeeper
-    environment:
-      ZOOKEEPER_SERVER_ID: 1
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
-    ports:
-      - "2181:2181"
-    networks:
-      - medical-records-net
+  # zookeeper:
+  #   image: confluentinc/cp-zookeeper:latest
+  #   container_name: zookeeper
+  #   environment:
+  #     ZOOKEEPER_SERVER_ID: 1
+  #     ZOOKEEPER_CLIENT_PORT: 2181
+  #     ZOOKEEPER_TICK_TIME: 2000
+  #   ports:
+  #     - "2181:2181"
+  #   networks:
+  #     - medical-records-net
 
-  zoonavigator:
-    image: elkozmon/zoonavigator:latest
-    container_name: zoonavigator
-    ports:
-      - "9090:8000"
-    environment:
-      HTTP_PORT: 8000
-      AUTO_CONNECT: "true"
-      CONNECTION_LOCAL_NAME: "local"
-      CONNECTION_LOCAL_CONN: "zookeeper:2181"
-    depends_on:
-      - zookeeper
-    networks:
-      - medical-records-net
+  # zoonavigator:
+  #   image: elkozmon/zoonavigator:latest
+  #   container_name: zoonavigator
+  #   ports:
+  #     - "9090:8000"
+  #   environment:
+  #     HTTP_PORT: 8000
+  #     AUTO_CONNECT: "true"
+  #     CONNECTION_LOCAL_NAME: "local"
+  #     CONNECTION_LOCAL_CONN: "zookeeper:2181"
+  #   depends_on:
+  #     - zookeeper
+  #   networks:
+  #     - medical-records-net
 
 networks:
   medical-records-net:
     driver: bridge
 
 volumes:
-  keycloak_postgres_data:
+  # keycloak_postgres_data:
   mysql_data:
-  mongo_data:
-  redis_data:
+  # mongo_data:
+  # redis_data:

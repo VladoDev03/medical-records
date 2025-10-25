@@ -13,28 +13,28 @@ spring:
     change-log: classpath:db/changelog/db.changelog-master.yaml
     enabled: true
 
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://keycloak:8081/realms/medical-records
-          jwk-set-uri: http://keycloak:8081/realms/medical-records/protocol/openid-connect/certs
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://keycloak:8081/realms/medical-records
+#          jwk-set-uri: http://keycloak:8081/realms/medical-records/protocol/openid-connect/certs
 
 management:
   endpoints:
     web:
       exposure:
         include: "*"
-  tracing:
-    sampling:
-      probability: 1.0
-  zipkin:
-    tracing:
-      endpoint: http://zipkin:9411/api/v2/spans
+#  tracing:
+#    sampling:
+#      probability: 1.0
+#  zipkin:
+#    tracing:
+#      endpoint: http://zipkin:9411/api/v2/spans
 
 eureka:
   instance:
-    hostname: discovery-server
+    hostname: patient-service
     instance-id: ${spring.application.name}:${instanceId:${random.value}}
 
   client:
