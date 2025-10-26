@@ -1,38 +1,61 @@
 spring:
   application:
     name: api-gateway
+
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
           lower-case-service-id: true
+
       routes:
         - id: patients
           uri: lb://patient-service
           predicates:
             - Path=/api/patients/**
+
         - id: doctors
           uri: lb://doctor-service
           predicates:
             - Path=/api/doctors/**
+
         - id: specialities
           uri: lb://doctor-service
           predicates:
             - Path=/api/specialities/**
+
+        - id: visits
+          uri: lb://visit-service
+          predicates:
+            - Path=/api/visits/**
+
+        - id: sick-leaves
+          uri: lb://visit-service
+          predicates:
+            - Path=/api/sick-leaves/**
+
+        - id: diagnoses
+          uri: lb://visit-service
+          predicates:
+            - Path=/api/diagnoses/**
+
 server:
   port: 8080
+
 eureka:
   client:
     service-url:
       defaultZone: http://discovery-server:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${instanceId:${random.value}}
+
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+
 #  tracing:
 #    sampling:
 #      probability: 1.0

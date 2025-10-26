@@ -24,7 +24,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: date
+                  name: visit_date
                   type: DATETIME
                   constraints:
                     nullable: false
@@ -57,6 +57,7 @@ databaseChangeLog:
                     foreignKeyName: fk_sick_leave_visit
                     references: visit(id)
                     deleteCascade: true
+                    unique: true
               - column:
                   name: start_date
                   type: DATETIME

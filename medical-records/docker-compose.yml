@@ -137,28 +137,28 @@ services:
   #     retries: 5
   #     start_period: 20s
 
-  # visit-service:
-  #   build:
-  #     context: ./backend/services/visit-service
-  #     dockerfile: Dockerfile
-  #   container_name: visit-service
-  #   ports:
-  #     - "8088:8088"
-  #   depends_on:
-  #     discovery-server:
-  #       condition: service_healthy
-  #     config-server:
-  #       condition: service_healthy
-  #     mysql:
-  #       condition: service_healthy
-  #   networks:
-  #     - medical-records-net
-  #   healthcheck:
-  #     test: ["CMD", "curl", "-f", "http://localhost:8088/actuator/health"]
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 5
-  #     start_period: 20s
+  visit-service:
+    build:
+      context: ./backend/services/visit-service
+      dockerfile: Dockerfile
+    container_name: visit-service
+    ports:
+      - "8088:8088"
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+      mysql:
+        condition: service_healthy
+    networks:
+      - medical-records-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8088/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
 
   # keycloak:
   #   image: quay.io/keycloak/keycloak:latest
@@ -238,19 +238,19 @@ services:
       retries: 10
       start_period: 30s
 
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin
-  #   container_name: phpmyadmin
-  #   environment:
-  #     PMA_HOST: mysql
-  #     PMA_USER: root
-  #     PMA_PASSWORD: root
-  #   ports:
-  #     - "8082:80"
-  #   depends_on:
-  #     - mysql
-  #   networks:
-  #     - medical-records-net
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8082:80"
+    depends_on:
+      - mysql
+    networks:
+      - medical-records-net
 
   # mongo:
   #   image: mongo:6.0
