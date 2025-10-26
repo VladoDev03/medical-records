@@ -5,6 +5,9 @@ spring:
   cloud:
     gateway:
       discovery:
+        httpclient:
+          connect-timeout: 3000
+          response-timeout: 5s
         locator:
           enabled: true
           lower-case-service-id: true
