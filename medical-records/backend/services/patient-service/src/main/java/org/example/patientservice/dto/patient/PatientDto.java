@@ -1,4 +1,4 @@
-package org.example.patientservice.dto;
+package org.example.patientservice.dto.patient;
 
 import lombok.*;
 
@@ -11,6 +11,6 @@ import java.time.LocalDate;
 public class PatientDto {
     private long id;
     private String keycloakId;
-    private String gpId;
+    private long gpId;
     private LocalDate lastDateInsured;
 }

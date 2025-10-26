@@ -1,7 +1,7 @@
 package org.example.patientservice.service.contracts;
 
-import org.example.patientservice.dto.CreatePatientDto;
-import org.example.patientservice.dto.PatientDto;
+import org.example.patientservice.dto.patient.CreatePatientDto;
+import org.example.patientservice.dto.patient.PatientDto;
 
 import java.util.List;
 

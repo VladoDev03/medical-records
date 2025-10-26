@@ -20,7 +20,7 @@ public class Patient {
 
 
     @Column(name = "GP_id", nullable = false)
-    private String gpId;
+    private long gpId;
 
     @Column(name = "last_date_insured", nullable = false)
     private LocalDate lastDateInsured;

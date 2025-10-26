@@ -2,8 +2,8 @@ package org.example.patientservice.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.patientservice.dto.CreatePatientDto;
-import org.example.patientservice.dto.PatientDto;
+import org.example.patientservice.dto.patient.CreatePatientDto;
+import org.example.patientservice.dto.patient.PatientDto;
 import org.example.patientservice.service.contracts.PatientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

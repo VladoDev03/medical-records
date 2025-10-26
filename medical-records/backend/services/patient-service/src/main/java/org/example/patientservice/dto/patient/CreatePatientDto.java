@@ -1,4 +1,4 @@
-package org.example.patientservice.dto;
+package org.example.patientservice.dto.patient;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
@@ -15,7 +15,7 @@ public class CreatePatientDto {
     private String keycloakId;
 
     @NotNull
-    private String gpId;
+    private long gpId;
 
     @NotNull
     @PastOrPresent(message = "Last insured date cannot be in the future")

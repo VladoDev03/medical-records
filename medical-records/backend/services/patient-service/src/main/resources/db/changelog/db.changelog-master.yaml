@@ -20,7 +20,7 @@ databaseChangeLog:
                     unique: true
               - column:
                   name: GP_id
-                  type: VARCHAR(255)
+                  type: BIGINT
               - column:
                   name: last_date_insured
                   type: DATETIME
