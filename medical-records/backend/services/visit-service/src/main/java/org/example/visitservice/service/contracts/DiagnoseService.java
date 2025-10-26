@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface DiagnoseService {
     List<DiagnoseDto> getDiagnoses();
+    List<DiagnoseDto> getDiagnosesByIds(List<Long> diagnoseIds);
     DiagnoseDto getDiagnoseById(long id);
     DiagnoseDto createDiagnose(CreateDiagnoseDto diagnose);
 }

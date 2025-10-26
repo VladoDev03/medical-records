@@ -1,11 +1,11 @@
 package org.example.visitservice.dto.visit;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class VisitDto {
-    private long id;
-    private LocalDate visitDate;
-    private long patientId;
-    private long doctorId;
-    private List<String> diagnosesNames = new ArrayList<>();
+public class UpdateVisitDto {
+    @NotNull
+    private List<Long> diagnosesIds = new ArrayList<>();
 }

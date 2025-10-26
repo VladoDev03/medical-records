@@ -3,6 +3,7 @@ package org.example.visitservice.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.visitservice.dto.visit.CreateVisitDto;
+import org.example.visitservice.dto.visit.UpdateVisitDto;
 import org.example.visitservice.dto.visit.VisitDto;
 import org.example.visitservice.service.contracts.VisitService;
 import org.springframework.http.HttpStatus;
@@ -33,5 +34,11 @@ public class VisitController {
     public ResponseEntity<VisitDto> createVisit(@RequestBody @Valid CreateVisitDto visitDto) {
         VisitDto createVisit = visitService.createVisit(visitDto);
         return new ResponseEntity<>(createVisit, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<VisitDto> updateVisit(@PathVariable long id, @RequestBody @Valid UpdateVisitDto visitDto) {
+        VisitDto createVisit = visitService.updateVisit(id, visitDto);
+        return ResponseEntity.ok(createVisit);
     }
 }
