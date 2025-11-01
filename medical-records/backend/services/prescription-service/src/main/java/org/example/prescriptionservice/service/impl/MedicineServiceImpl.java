@@ -13,10 +13,11 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MedicineServiceImpl implements MedicineService {
-
     private final MedicineRepository medicineRepository;
     private final ModelMapper mapper;
 
@@ -37,8 +38,36 @@ public class MedicineServiceImpl implements MedicineService {
     }
 
     @Override
-    public Mono<MedicineDto> createMedicine(CreateMedicineDto dto) {
-        Medicine newMedicine = mapper.map(dto, Medicine.class);
+    public Flux<MedicineDto> getMedicinesByIds(List<String> ids) {
+        return medicineRepository.findAllById(ids)
+                .collectList()
+                .flatMapMany(medicines -> {
+                    if (medicines.size() != ids.size()) {
+                        List<String> foundIds = medicines.stream()
+                                .map(Medicine::getId)
+                                .toList();
+
+                        ids.stream()
+                                .filter(id -> !foundIds.contains(id))
+                                .forEach(id -> {
+                                    throw new DocumentNotFoundException(
+                                            "Medicine not found with id: " + id,
+                                            HttpStatus.NOT_FOUND.value()
+                                    );
+                                });
+                    }
+
+                    return Flux.fromIterable(
+                            medicines.stream()
+                                    .map(medicine -> mapper.map(medicine, MedicineDto.class))
+                                    .toList()
+                    );
+                });
+    }
+
+    @Override
+    public Mono<MedicineDto> createMedicine(CreateMedicineDto medicine) {
+        Medicine newMedicine = mapper.map(medicine, Medicine.class);
 
         return medicineRepository.save(newMedicine)
                 .map(savedMedicine -> mapper.map(savedMedicine, MedicineDto.class));

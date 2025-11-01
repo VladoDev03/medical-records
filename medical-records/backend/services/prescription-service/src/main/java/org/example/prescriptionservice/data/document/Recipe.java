@@ -22,5 +22,5 @@ public class Recipe extends BaseDocument {
     private String prescriptionCode;
     private LocalDate dateCreated;
 
-    private List<MedicineItem> medicineItems;
+    private List<MedicineItem> medicines;
 }

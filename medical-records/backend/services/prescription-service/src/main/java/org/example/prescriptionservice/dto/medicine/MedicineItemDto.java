@@ -1,4 +1,4 @@
-package org.example.prescriptionservice.data.document;
+package org.example.prescriptionservice.dto.medicine;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,11 +11,10 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MedicineItem {
+public class MedicineItemDto {
+    private String medicineName;
     private int dosePerIntake;
     private int timesPerDay;
     private int durationDays;
     private BigDecimal price;
-
-    private Medicine medicine;
 }
