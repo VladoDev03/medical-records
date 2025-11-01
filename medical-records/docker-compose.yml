@@ -68,97 +68,97 @@ services:
       retries: 5
       start_period: 20s
 
-  doctor-service:
-    build:
-      context: ./backend/services/doctor-service
-      dockerfile: Dockerfile
-    container_name: doctor-service
-    ports:
-      - "8084:8084"
-    depends_on:
-      discovery-server:
-        condition: service_healthy
-      config-server:
-        condition: service_healthy
-      mysql:
-        condition: service_healthy
-    networks:
-      - medical-records-net
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8084/actuator/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 20s
-
-  patient-service:
-    build:
-      context: ./backend/services/patient-service
-      dockerfile: Dockerfile
-    container_name: patient-service
-    ports:
-      - "8086:8086"
-    depends_on:
-      discovery-server:
-        condition: service_healthy
-      config-server:
-        condition: service_healthy
-      mysql:
-        condition: service_healthy
-    networks:
-      - medical-records-net
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8086/actuator/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 20s
-
-  # prescription-service:
+  # doctor-service:
   #   build:
-  #     context: ./backend/services/prescription-service
+  #     context: ./backend/services/doctor-service
   #     dockerfile: Dockerfile
-  #   container_name: prescription-service
+  #   container_name: doctor-service
   #   ports:
-  #     - "8087:8087"
+  #     - "8084:8084"
   #   depends_on:
   #     discovery-server:
   #       condition: service_healthy
   #     config-server:
   #       condition: service_healthy
-  #     redis:
+  #     mysql:
   #       condition: service_healthy
   #   networks:
   #     - medical-records-net
   #   healthcheck:
-  #     test: ["CMD", "curl", "-f", "http://localhost:8087/actuator/health"]
+  #     test: ["CMD", "curl", "-f", "http://localhost:8084/actuator/health"]
   #     interval: 10s
   #     timeout: 5s
   #     retries: 5
   #     start_period: 20s
 
-  visit-service:
+  # patient-service:
+  #   build:
+  #     context: ./backend/services/patient-service
+  #     dockerfile: Dockerfile
+  #   container_name: patient-service
+  #   ports:
+  #     - "8086:8086"
+  #   depends_on:
+  #     discovery-server:
+  #       condition: service_healthy
+  #     config-server:
+  #       condition: service_healthy
+  #     mysql:
+  #       condition: service_healthy
+  #   networks:
+  #     - medical-records-net
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8086/actuator/health"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 20s
+
+  prescription-service:
     build:
-      context: ./backend/services/visit-service
+      context: ./backend/services/prescription-service
       dockerfile: Dockerfile
-    container_name: visit-service
+    container_name: prescription-service
     ports:
-      - "8088:8088"
+      - "8087:8087"
     depends_on:
       discovery-server:
         condition: service_healthy
       config-server:
         condition: service_healthy
-      mysql:
-        condition: service_healthy
+      # redis:
+      #   condition: service_healthy
     networks:
       - medical-records-net
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8088/actuator/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8087/actuator/health"]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 20s
+
+  # visit-service:
+  #   build:
+  #     context: ./backend/services/visit-service
+  #     dockerfile: Dockerfile
+  #   container_name: visit-service
+  #   ports:
+  #     - "8088:8088"
+  #   depends_on:
+  #     discovery-server:
+  #       condition: service_healthy
+  #     config-server:
+  #       condition: service_healthy
+  #     mysql:
+  #       condition: service_healthy
+  #   networks:
+  #     - medical-records-net
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8088/actuator/health"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 20s
 
   # keycloak:
   #   image: quay.io/keycloak/keycloak:latest
@@ -220,64 +220,64 @@ services:
   #   networks:
   #     - medical-records-net
 
-  mysql:
-    image: mysql:8.0
-    container_name: mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - "3307:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - medical-records-net
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 30s
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    environment:
-      PMA_HOST: mysql
-      PMA_USER: root
-      PMA_PASSWORD: root
-    ports:
-      - "8082:80"
-    depends_on:
-      - mysql
-    networks:
-      - medical-records-net
-
-  # mongo:
-  #   image: mongo:6.0
-  #   container_name: mongo
+  # mysql:
+  #   image: mysql:8.0
+  #   container_name: mysql
   #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: root
-  #     MONGO_INITDB_ROOT_PASSWORD: rootpass
+  #     MYSQL_ROOT_PASSWORD: root
   #   ports:
-  #     - "27018:27017"
+  #     - "3307:3306"
   #   volumes:
-  #     - mongo_data:/data/db
+  #     - mysql_data:/var/lib/mysql
+  #   networks:
+  #     - medical-records-net
+  #   healthcheck:
+  #     test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 10
+  #     start_period: 30s
+
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: phpmyadmin
+  #   environment:
+  #     PMA_HOST: mysql
+  #     PMA_USER: root
+  #     PMA_PASSWORD: root
+  #   ports:
+  #     - "8082:80"
+  #   depends_on:
+  #     - mysql
   #   networks:
   #     - medical-records-net
 
-  # mongo-express:
-  #   image: mongo-express
-  #   container_name: mongo-express
-  #   environment:
-  #     ME_CONFIG_MONGODB_ADMINUSERNAME: root
-  #     ME_CONFIG_MONGODB_ADMINPASSWORD: rootpass
-  #     ME_CONFIG_MONGODB_SERVER: mongo
-  #   ports:
-  #     - "8083:8081"
-  #   depends_on:
-  #     - mongo
-  #   networks:
-  #     - medical-records-net
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpass
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - medical-records-net
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: rootpass
+      ME_CONFIG_MONGODB_SERVER: mongo
+    ports:
+      - "8083:8081"
+    depends_on:
+      - mongo
+    networks:
+      - medical-records-net
 
   # redis:
   #   image: redis/redis-stack-server:latest
@@ -371,6 +371,6 @@ networks:
 
 volumes:
   # keycloak_postgres_data:
-  mysql_data:
-  # mongo_data:
+  # mysql_data:
+  mongo_data:
   # redis_data:

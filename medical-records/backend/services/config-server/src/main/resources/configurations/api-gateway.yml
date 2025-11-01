@@ -43,6 +43,16 @@ spring:
           predicates:
             - Path=/api/diagnoses/**
 
+        - id: recipes
+          uri: lb://prescription-service
+          predicates:
+            - Path=/api/recipes/**
+
+        - id: medicines
+          uri: lb://prescription-service
+          predicates:
+            - Path=/api/medicines/**
+
 server:
   port: 8080
 
