@@ -1,20 +1,27 @@
 package org.example.prescriptionservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.example.prescriptionservice.client.DoctorClient;
+import org.example.prescriptionservice.client.PatientClient;
+import org.example.prescriptionservice.client.VisitClient;
 import org.example.prescriptionservice.data.document.Medicine;
 import org.example.prescriptionservice.data.document.MedicineItem;
 import org.example.prescriptionservice.data.document.Recipe;
 import org.example.prescriptionservice.data.repo.RecipeRepository;
+import org.example.prescriptionservice.dto.doctor.DoctorDto;
 import org.example.prescriptionservice.dto.medicine.CreateMedicineItemDto;
 import org.example.prescriptionservice.dto.medicine.MedicineItemDto;
+import org.example.prescriptionservice.dto.patient.PatientDto;
 import org.example.prescriptionservice.dto.recipe.CreateRecipeDto;
 import org.example.prescriptionservice.dto.recipe.RecipeDto;
+import org.example.prescriptionservice.dto.visit.VisitDto;
 import org.example.prescriptionservice.exception.DocumentNotFoundException;
 import org.example.prescriptionservice.service.contracts.MedicineService;
 import org.example.prescriptionservice.service.contracts.RecipeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -26,6 +33,9 @@ public class RecipeServiceImpl implements RecipeService {
     private final RecipeRepository recipeRepository;
     private final ModelMapper mapper;
     private final MedicineService medicineService;
+    private final PatientClient patientClient;
+    private final DoctorClient doctorClient;
+    private final VisitClient visitClient;
 
     @Override
     public Flux<RecipeDto> getRecipes() {
@@ -58,37 +68,55 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Mono<RecipeDto> createRecipe(CreateRecipeDto recipe) {
-        List<String> ids = recipe
-                .getMedicines()
+        List<String> medicineIds = recipe.getMedicines()
                 .stream()
                 .map(CreateMedicineItemDto::getMedicineId)
                 .toList();
 
-        Recipe newRecipe = mapper.map(recipe, Recipe.class);
+        long uniqueCount = medicineIds.stream().distinct().count();
 
-        return medicineService
-                .getMedicinesByIds(ids)
-                .flatMap(medicineDto -> {
-                    CreateMedicineItemDto dto = recipe
-                            .getMedicines()
-                            .stream()
-                            .filter(medicineDtoItem -> medicineDtoItem
-                                    .getMedicineId()
-                                    .equals(medicineDto.getId())
-                            )
-                            .findFirst()
-                            .orElseThrow();
+        if (uniqueCount < medicineIds.size()) {
+            throw new IllegalArgumentException("Duplicate medicines are not allowed in a recipe.");
+        }
 
-                    MedicineItem item = mapper.map(dto, MedicineItem.class);
-                    item.setMedicine(mapper.map(medicineDto, Medicine.class));
+        Mono<DoctorDto> doctorMono = doctorClient
+                .getDoctorById(recipe.getDoctorId())
+                .onErrorMap(WebClientResponseException.NotFound.class,
+                        e -> new IllegalArgumentException("Doctor not found with id: " + recipe.getDoctorId()));
 
-                    return Mono.just(item);
+        Mono<PatientDto> patientMono = patientClient
+                .getPatientById(recipe.getPatientId())
+                .onErrorMap(WebClientResponseException.NotFound.class,
+                        e -> new IllegalArgumentException("Patient not found with id: " + recipe.getPatientId()));
+
+        Mono<VisitDto> visitMono = visitClient
+                .getVisitById(recipe.getVisitId())
+                .onErrorMap(WebClientResponseException.NotFound.class,
+                        e -> new IllegalArgumentException("Visit not found with id: " + recipe.getVisitId()));
+
+        return Mono.zip(doctorMono, patientMono, visitMono)
+                .flatMap(tuple -> {
+                    Recipe newRecipe = mapper.map(recipe, Recipe.class);
+
+                    return medicineService
+                            .getMedicinesByIds(medicineIds)
+                            .flatMap(medicineDto -> {
+                                CreateMedicineItemDto dto = recipe.getMedicines().stream()
+                                        .filter(m -> m.getMedicineId().equals(medicineDto.getId()))
+                                        .findFirst()
+                                        .orElseThrow();
+
+                                MedicineItem item = mapper.map(dto, MedicineItem.class);
+                                item.setMedicine(mapper.map(medicineDto, Medicine.class));
+                                return Mono.just(item);
+                            })
+                            .collectList()
+                            .flatMap(items -> {
+                                newRecipe.setMedicines(items);
+                                return recipeRepository.save(newRecipe);
+                            })
+                            .map(savedRecipe -> mapper.map(savedRecipe, RecipeDto.class));
                 })
-                .collectList()
-                .flatMap(items -> {
-                    newRecipe.setMedicines(items);
-                    return recipeRepository.save(newRecipe);
-                })
-                .map(savedRecipe -> mapper.map(savedRecipe, RecipeDto.class));
+                .onErrorMap(e -> new RuntimeException("Failed to create recipe", e));
     }
 }
