@@ -7,6 +7,7 @@ import org.example.doctorservice.data.entity.Speciality;
 import org.example.doctorservice.data.repo.DoctorRepository;
 import org.example.doctorservice.dto.doctor.CreateDoctorDto;
 import org.example.doctorservice.dto.doctor.DoctorDto;
+import org.example.doctorservice.dto.speciality.SpecialityDto;
 import org.example.doctorservice.exception.EntityNotFoundException;
 import org.example.doctorservice.service.contracts.DoctorService;
 import org.example.doctorservice.service.contracts.SpecialityService;
@@ -38,12 +39,10 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public DoctorDto createDoctor(CreateDoctorDto doctor) {
-        Set<Speciality> specialities = doctor.getSpecialityIds()
+        Set<Speciality> specialities = specialityService
+                .getSpecialitiesByIds(doctor.getSpecialityIds())
                 .stream()
-                .map(id -> mapperConfig
-                        .getModelMapper()
-                        .map(specialityService.getSpecialityById(id), Speciality.class)
-                )
+                .map(speciality -> mapperConfig.getModelMapper().map(speciality, Speciality.class))
                 .collect(Collectors.toSet());
 
         Doctor newDoctor = mapperConfig.getModelMapper().map(doctor, Doctor.class);

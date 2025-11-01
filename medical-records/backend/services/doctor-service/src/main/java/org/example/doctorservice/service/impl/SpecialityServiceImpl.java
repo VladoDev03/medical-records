@@ -10,6 +10,7 @@ import org.example.doctorservice.exception.EntityNotFoundException;
 import org.example.doctorservice.service.contracts.SpecialityService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,6 +22,27 @@ public class SpecialityServiceImpl implements SpecialityService {
     @Override
     public List<SpecialityDto> getAllSpecialities() {
         return mapperConfig.mapList(specialityRepository.findAll(), SpecialityDto.class);
+    }
+
+    @Override
+    public List<SpecialityDto> getSpecialitiesByIds(List<Long> specialitiesIds) {
+        List<SpecialityDto> specialities = mapperConfig.mapList(specialityRepository.findAllById(specialitiesIds), SpecialityDto.class);
+
+        if (specialities.size() != specialitiesIds.size()) {
+            List<Long> foundIds = specialities
+                    .stream()
+                    .map(SpecialityDto::getId)
+                    .toList();
+
+            specialitiesIds
+                    .stream()
+                    .filter(id -> !foundIds.contains(id))
+                    .forEach(id -> {
+                        throw new EntityNotFoundException("Speciality not found with id: " + id);
+                    });
+        }
+
+        return new ArrayList<>(specialities);
     }
 
     @Override
