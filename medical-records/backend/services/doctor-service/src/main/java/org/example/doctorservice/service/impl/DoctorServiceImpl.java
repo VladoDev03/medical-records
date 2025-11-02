@@ -7,7 +7,6 @@ import org.example.doctorservice.data.entity.Speciality;
 import org.example.doctorservice.data.repo.DoctorRepository;
 import org.example.doctorservice.dto.doctor.CreateDoctorDto;
 import org.example.doctorservice.dto.doctor.DoctorDto;
-import org.example.doctorservice.dto.speciality.SpecialityDto;
 import org.example.doctorservice.exception.EntityNotFoundException;
 import org.example.doctorservice.service.contracts.DoctorService;
 import org.example.doctorservice.service.contracts.SpecialityService;

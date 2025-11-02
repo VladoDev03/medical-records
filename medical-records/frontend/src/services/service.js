@@ -1,6 +1,6 @@
 import keycloak from '../config/keycloak'
 
-const BASE_URL = 'http://localhost:8082/api/patients';
+const BASE_URL = 'http://localhost:8080/api/patients';
 
 export const getPatients = async () => {
     const keycloakToken = keycloak.token;
