@@ -13,12 +13,12 @@ spring:
     change-log: classpath:db/changelog/db.changelog-master.yaml
     enabled: true
 
-#  security:
-#    oauth2:
-#      resourceserver:
-#        jwt:
-#          issuer-uri: http://keycloak:8081/realms/medical-records
-#          jwk-set-uri: http://keycloak:8081/realms/medical-records/protocol/openid-connect/certs
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://keycloak:8080/realms/medical-records
+          jwk-set-uri: http://keycloak:8080/realms/medical-records/protocol/openid-connect/certs
 
 management:
   endpoints:

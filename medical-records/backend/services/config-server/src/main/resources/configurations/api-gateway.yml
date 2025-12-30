@@ -2,6 +2,13 @@ spring:
   application:
     name: api-gateway
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://keycloak:8080/realms/medical-records
+          jwk-set-uri: http://keycloak:8080/realms/medical-records/protocol/openid-connect/certs
+
   cloud:
     gateway:
       discovery:
