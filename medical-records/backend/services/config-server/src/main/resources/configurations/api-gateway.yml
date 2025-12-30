@@ -8,50 +8,54 @@ spring:
         httpclient:
           connect-timeout: 3000
           response-timeout: 5s
-        locator:
-          enabled: true
-          lower-case-service-id: true
 
-      routes:
-        - id: patients
-          uri: lb://patient-service
-          predicates:
-            - Path=/api/patients/**
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
 
-        - id: doctors
-          uri: lb://doctor-service
-          predicates:
-            - Path=/api/doctors/**
+          routes:
+            - id: patients
+              uri: lb://patient-service
+              predicates:
+                - Path=/api/patients/**
 
-        - id: specialities
-          uri: lb://doctor-service
-          predicates:
-            - Path=/api/specialities/**
+            - id: doctors
+              uri: lb://doctor-service
+              predicates:
+                - Path=/api/doctors/**
 
-        - id: visits
-          uri: lb://visit-service
-          predicates:
-            - Path=/api/visits/**
+            - id: specialities
+              uri: lb://doctor-service
+              predicates:
+                - Path=/api/specialities/**
 
-        - id: sick-leaves
-          uri: lb://visit-service
-          predicates:
-            - Path=/api/sick-leaves/**
+            - id: visits
+              uri: lb://visit-service
+              predicates:
+                - Path=/api/visits/**
 
-        - id: diagnoses
-          uri: lb://visit-service
-          predicates:
-            - Path=/api/diagnoses/**
+            - id: sick-leaves
+              uri: lb://visit-service
+              predicates:
+                - Path=/api/sick-leaves/**
 
-        - id: recipes
-          uri: lb://prescription-service
-          predicates:
-            - Path=/api/recipes/**
+            - id: diagnoses
+              uri: lb://visit-service
+              predicates:
+                - Path=/api/diagnoses/**
 
-        - id: medicines
-          uri: lb://prescription-service
-          predicates:
-            - Path=/api/medicines/**
+            - id: recipes
+              uri: lb://prescription-service
+              predicates:
+                - Path=/api/recipes/**
+
+            - id: medicines
+              uri: lb://prescription-service
+              predicates:
+                - Path=/api/medicines/**
 
 server:
   port: 8080
@@ -59,7 +63,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://discovery-server:8761/eureka
+      defaultZone: http://localhost:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${instanceId:${random.value}}
 
@@ -72,6 +76,7 @@ management:
   tracing:
     sampling:
       probability: 1.0
+
   zipkin:
     tracing:
-      endpoint: http://zipkin:9411/api/v2/spans
+      endpoint: http://localhost:9411/api/v2/spans
