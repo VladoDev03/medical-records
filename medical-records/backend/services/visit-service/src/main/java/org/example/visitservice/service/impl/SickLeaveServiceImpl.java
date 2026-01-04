@@ -39,6 +39,10 @@ public class SickLeaveServiceImpl implements SickLeaveService {
         Visit visit = mapperConfig.getModelMapper()
                 .map(visitService.getVisitById(sickLeave.getVisitId()), Visit.class);
 
+        if (sickLeave.getStartDate().isBefore(visit.getVisitDate())) {
+            throw new IllegalArgumentException("Sick leave start date cannot be before the visit date");
+        }
+
         SickLeave newSickLeave = mapperConfig.getModelMapper().map(sickLeave, SickLeave.class);
         newSickLeave.setVisit(visit);
 

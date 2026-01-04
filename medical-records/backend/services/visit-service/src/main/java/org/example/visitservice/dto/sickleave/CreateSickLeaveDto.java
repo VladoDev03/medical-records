@@ -18,7 +18,7 @@ public class CreateSickLeaveDto {
     @FutureOrPresent(message = "Start date cannot be in the past")
     private LocalDate startDate;
 
-    @Positive
+    @Positive(message = "Number of days must be a positive integer")
     private int days;
 
     @NotNull
