@@ -8,7 +8,9 @@ import org.example.visitservice.config.ModelMapperConfig;
 import org.example.visitservice.data.entity.Diagnose;
 import org.example.visitservice.data.entity.Visit;
 import org.example.visitservice.data.repo.VisitRepository;
+import org.example.visitservice.dto.doctor.DoctorDto;
 import org.example.visitservice.dto.visit.CreateVisitDto;
+import org.example.visitservice.dto.visit.DoctorVisitCountDto;
 import org.example.visitservice.dto.visit.UpdateVisitDto;
 import org.example.visitservice.dto.visit.VisitDto;
 import org.example.visitservice.exception.EntityNotFoundException;
@@ -17,6 +19,7 @@ import org.example.visitservice.service.contracts.VisitService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,6 +35,11 @@ public class VisitServiceImpl implements VisitService {
     @Override
     public List<VisitDto> getVisits() {
         return mapperConfig.mapList(visitRepository.findAllWithDiagnoses(), VisitDto.class);
+    }
+
+    @Override
+    public List<VisitDto> getVisitsByPatientId(long patientId) {
+        return mapperConfig.mapList(visitRepository.findAllByPatientId(patientId), VisitDto.class);
     }
 
     @Override
@@ -80,6 +88,21 @@ public class VisitServiceImpl implements VisitService {
         );
 
         return updatedVisit;
+    }
+
+    @Override
+    public List<DoctorVisitCountDto> getVisitCountsForAllDoctors() {
+        List<DoctorDto> allDoctors = doctorClient.getAllDoctors();
+        List<DoctorVisitCountDto> counts = mapperConfig.mapList(visitRepository.countVisitsGroupedByDoctor(), DoctorVisitCountDto.class);
+
+        Map<Long, Long> visitMap = counts
+                .stream()
+                .collect(Collectors.toMap(DoctorVisitCountDto::getDoctorId, DoctorVisitCountDto::getVisitCount));
+
+        return allDoctors
+                .stream()
+                .map(d -> new DoctorVisitCountDto(d.getId(), visitMap.getOrDefault(d.getId(), 0L)))
+                .toList();
     }
 
     private Visit findVisitOrThrow(long id) {

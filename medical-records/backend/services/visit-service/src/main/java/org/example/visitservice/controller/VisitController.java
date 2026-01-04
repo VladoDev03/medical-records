@@ -3,6 +3,7 @@ package org.example.visitservice.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.visitservice.dto.visit.CreateVisitDto;
+import org.example.visitservice.dto.visit.DoctorVisitCountDto;
 import org.example.visitservice.dto.visit.UpdateVisitDto;
 import org.example.visitservice.dto.visit.VisitDto;
 import org.example.visitservice.service.contracts.VisitService;
@@ -24,6 +25,12 @@ public class VisitController {
         return ResponseEntity.ok(visits);
     }
 
+    @GetMapping("/patient/{id}")
+    public ResponseEntity<List<VisitDto>> getVisitsByPatientId(@PathVariable long id) {
+        List<VisitDto> visits = visitService.getVisitsByPatientId(id);
+        return ResponseEntity.ok(visits);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<VisitDto> getVisit(@PathVariable long id) {
         VisitDto visit = visitService.getVisitById(id);
@@ -40,5 +47,11 @@ public class VisitController {
     public ResponseEntity<VisitDto> updateVisit(@PathVariable long id, @RequestBody @Valid UpdateVisitDto visitDto) {
         VisitDto createVisit = visitService.updateVisit(id, visitDto);
         return ResponseEntity.ok(createVisit);
+    }
+
+    @GetMapping("/doctor/counts")
+    public ResponseEntity<List<DoctorVisitCountDto>> getVisitCountsByDoctor() {
+        List<DoctorVisitCountDto> counts = visitService.getVisitCountsForAllDoctors();
+        return ResponseEntity.ok(counts);
     }
 }
