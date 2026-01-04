@@ -7,6 +7,7 @@ import org.example.patientservice.config.ModelMapperConfig;
 import org.example.patientservice.data.entity.Patient;
 import org.example.patientservice.data.repo.PatientRepository;
 import org.example.patientservice.dto.patient.CreatePatientDto;
+import org.example.patientservice.dto.patient.GpPatientCountDto;
 import org.example.patientservice.dto.patient.PatientDto;
 import org.example.patientservice.exception.EntityNotFoundException;
 import org.example.patientservice.service.contracts.PatientService;
@@ -46,5 +47,15 @@ public class PatientServiceImpl implements PatientService {
         Patient savedPatient = patientRepository.save(newPatient);
 
         return mapperConfig.getModelMapper().map(savedPatient, PatientDto.class);
+    }
+
+    @Override
+    public List<PatientDto> getPatientsByGpId(long gpId) {
+        return mapperConfig.mapList(patientRepository.findAllByGpId(gpId), PatientDto.class);
+    }
+
+    @Override
+    public List<GpPatientCountDto> getPatientCountsForAllGp() {
+        return patientRepository.countPatientsGroupedByGp();
     }
 }
