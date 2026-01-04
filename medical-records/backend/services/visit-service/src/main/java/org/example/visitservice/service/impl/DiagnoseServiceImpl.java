@@ -1,23 +1,28 @@
 package org.example.visitservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.example.visitservice.client.PatientClient;
 import org.example.visitservice.config.ModelMapperConfig;
 import org.example.visitservice.data.entity.Diagnose;
 import org.example.visitservice.data.repo.DiagnoseRepository;
 import org.example.visitservice.dto.diagnose.CreateDiagnoseDto;
+import org.example.visitservice.dto.diagnose.DiagnoseCountDto;
 import org.example.visitservice.dto.diagnose.DiagnoseDto;
+import org.example.visitservice.dto.patient.PatientDto;
 import org.example.visitservice.exception.EntityNotFoundException;
 import org.example.visitservice.service.contracts.DiagnoseService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class DiagnoseServiceImpl implements DiagnoseService {
     private final DiagnoseRepository diagnoseRepository;
     private final ModelMapperConfig mapperConfig;
+    private final PatientClient patientClient;
 
     @Override
     public List<DiagnoseDto> getDiagnoses() {
@@ -59,5 +64,30 @@ public class DiagnoseServiceImpl implements DiagnoseService {
         Diagnose savedDiagnose = diagnoseRepository.save(newDiagnose);
 
         return mapperConfig.getModelMapper().map(savedDiagnose, DiagnoseDto.class);
+    }
+
+    @Override
+    public List<PatientDto> getPatientsByDiagnoseId(long diagnoseId) {
+        List<Long> patientIds = diagnoseRepository.findAllByDiagnoseId(diagnoseId);
+
+        return patientIds
+                .stream()
+                .map(patientClient::getPatientById)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DiagnoseCountDto> getMostFrequentDiagnoses() {
+        List<DiagnoseCountDto> counts = diagnoseRepository.findDiagnoseCounts();
+
+        if (counts.isEmpty()) {
+            return List.of();
+        }
+
+        long maxCount = counts.getFirst().getCount();
+
+        return counts.stream()
+                .filter(d -> d.getCount() == maxCount)
+                .toList();
     }
 }

@@ -3,7 +3,9 @@ package org.example.visitservice.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.visitservice.dto.diagnose.CreateDiagnoseDto;
+import org.example.visitservice.dto.diagnose.DiagnoseCountDto;
 import org.example.visitservice.dto.diagnose.DiagnoseDto;
+import org.example.visitservice.dto.patient.PatientDto;
 import org.example.visitservice.service.contracts.DiagnoseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +35,16 @@ public class DiagnoseController {
     public ResponseEntity<DiagnoseDto> createDiagnose(@RequestBody @Valid CreateDiagnoseDto diagnoseDto) {
         DiagnoseDto createdDiagnose = diagnoseService.createDiagnose(diagnoseDto);
         return new ResponseEntity<>(createdDiagnose, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/patients/{diagnoseId}")
+    public ResponseEntity<List<PatientDto>> getPatientsByDiagnose(@PathVariable long diagnoseId) {
+        List<PatientDto> patients = diagnoseService.getPatientsByDiagnoseId(diagnoseId);
+        return ResponseEntity.ok(patients);
+    }
+
+    @GetMapping("/most-frequent")
+    public ResponseEntity<List<DiagnoseCountDto>> getMostFrequentDiagnoses() {
+        return ResponseEntity.ok(diagnoseService.getMostFrequentDiagnoses());
     }
 }
