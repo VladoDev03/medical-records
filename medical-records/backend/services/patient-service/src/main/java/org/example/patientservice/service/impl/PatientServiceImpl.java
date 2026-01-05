@@ -6,6 +6,7 @@ import org.example.patientservice.client.DoctorClient;
 import org.example.patientservice.config.ModelMapperConfig;
 import org.example.patientservice.data.entity.Patient;
 import org.example.patientservice.data.repo.PatientRepository;
+import org.example.patientservice.dto.doctor.DoctorDto;
 import org.example.patientservice.dto.patient.CreatePatientDto;
 import org.example.patientservice.dto.patient.GpPatientCountDto;
 import org.example.patientservice.dto.patient.PatientDto;
@@ -14,6 +15,7 @@ import org.example.patientservice.service.contracts.PatientService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -37,14 +39,24 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public PatientDto createPatient(CreatePatientDto patient) {
+        DoctorDto doctor;
+
         try {
-            doctorClient.getDoctorById(patient.getGpId());
+            doctor = doctorClient.getDoctorById(patient.getGpId());
         } catch (FeignException.NotFound e) {
             throw new IllegalArgumentException("Doctor not found with id: " + patient.getGpId());
         }
 
         Patient newPatient = mapperConfig.getModelMapper().map(patient, Patient.class);
         Patient savedPatient = patientRepository.save(newPatient);
+
+        if (!doctor.isGp()) {
+            throw new IllegalArgumentException("Doctor with id " + patient.getGpId() + " is not a GP");
+        }
+
+        if (Objects.equals(doctor.getKeycloakId(), patient.getKeycloakId())) {
+            throw new IllegalArgumentException("Patients cannot be GPs to themselves.");
+        }
 
         return mapperConfig.getModelMapper().map(savedPatient, PatientDto.class);
     }
