@@ -39,4 +39,10 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.badRequest().body(errors);
     }
+
+    @ExceptionHandler(ExternalServiceUnavailableException.class)
+    public ResponseEntity<Map<String, String>> handleExternalServiceError(ExternalServiceUnavailableException e) {
+        Map<String, String> error = Map.of("error", e.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.SERVICE_UNAVAILABLE);
+    }
 }

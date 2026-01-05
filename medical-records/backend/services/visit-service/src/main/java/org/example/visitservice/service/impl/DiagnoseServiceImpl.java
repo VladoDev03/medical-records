@@ -1,5 +1,6 @@
 package org.example.visitservice.service.impl;
 
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import org.example.visitservice.client.PatientClient;
 import org.example.visitservice.config.ModelMapperConfig;
@@ -8,14 +9,15 @@ import org.example.visitservice.data.repo.DiagnoseRepository;
 import org.example.visitservice.dto.diagnose.CreateDiagnoseDto;
 import org.example.visitservice.dto.diagnose.DiagnoseCountDto;
 import org.example.visitservice.dto.diagnose.DiagnoseDto;
-import org.example.visitservice.dto.patient.PatientDto;
+import org.example.visitservice.dto.patient.BatchPatientDto;
 import org.example.visitservice.exception.EntityNotFoundException;
+import org.example.visitservice.exception.ExternalServiceUnavailableException;
 import org.example.visitservice.service.contracts.DiagnoseService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -67,13 +69,18 @@ public class DiagnoseServiceImpl implements DiagnoseService {
     }
 
     @Override
-    public List<PatientDto> getPatientsByDiagnoseId(long diagnoseId) {
+    public BatchPatientDto getPatientsByDiagnoseId(long diagnoseId) {
         List<Long> patientIds = diagnoseRepository.findAllByDiagnoseId(diagnoseId);
 
-        return patientIds
-                .stream()
-                .map(patientClient::getPatientById)
-                .collect(Collectors.toList());
+        BatchPatientDto result;
+
+        try {
+            result = patientClient.getPatientsBatch(patientIds);
+        } catch (FeignException | ResourceAccessException e) {
+            throw new ExternalServiceUnavailableException("Patient service is currently unavailable.");
+        }
+
+        return result;
     }
 
     @Override

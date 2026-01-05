@@ -13,7 +13,6 @@ import org.example.doctorservice.service.contracts.DoctorService;
 import org.example.doctorservice.service.contracts.SpecialityService;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -38,14 +37,10 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public DoctorDto createDoctor(CreateDoctorDto doctor) {
-        Set<Speciality> specialities = specialityService
-                .getSpecialitiesByIds(doctor.getSpecialityIds())
-                .stream()
-                .map(speciality -> mapperConfig.getModelMapper().map(speciality, Speciality.class))
-                .collect(Collectors.toSet());
+    public DoctorDto createDoctor(CreateDoctorDto doctorDto) {
+        Set<Speciality> specialities = getSpecialitiesFromIds(doctorDto.getSpecialityIds());
 
-        Doctor newDoctor = mapperConfig.getModelMapper().map(doctor, Doctor.class);
+        Doctor newDoctor = mapperConfig.getModelMapper().map(doctorDto, Doctor.class);
         newDoctor.setSpecialities(specialities);
 
         DoctorDto result = mapperConfig
@@ -64,12 +59,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public DoctorDto updateDoctor(long id, UpdateDoctorDto doctorDto) {
         Doctor doctor = findDoctorOrThrow(id);
-
-        Set<Speciality> specialities = specialityService
-                .getSpecialitiesByIds(doctorDto.getSpecialityIds())
-                .stream()
-                .map(speciality -> mapperConfig.getModelMapper().map(speciality, Speciality.class))
-                .collect(Collectors.toSet());
+        Set<Speciality> specialities = getSpecialitiesFromIds(doctorDto.getSpecialityIds());
 
         doctor.setSpecialities(specialities);
         DoctorDto updatedDoctor = mapperConfig.getModelMapper().map(doctorRepository.save(doctor), DoctorDto.class);
@@ -83,8 +73,12 @@ public class DoctorServiceImpl implements DoctorService {
         return updatedDoctor;
     }
 
-    private Set<Speciality> getSpecialitiesFromIds() {
-        return new HashSet<>();
+    private Set<Speciality> getSpecialitiesFromIds(List<Long> specialitiesIds) {
+        return specialityService
+                .getSpecialitiesByIds(specialitiesIds)
+                .stream()
+                .map(speciality -> mapperConfig.getModelMapper().map(speciality, Speciality.class))
+                .collect(Collectors.toSet());
     }
 
     private Doctor findDoctorOrThrow(long id) {

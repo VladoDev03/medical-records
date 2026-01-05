@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.visitservice.dto.diagnose.CreateDiagnoseDto;
 import org.example.visitservice.dto.diagnose.DiagnoseCountDto;
 import org.example.visitservice.dto.diagnose.DiagnoseDto;
-import org.example.visitservice.dto.patient.PatientDto;
+import org.example.visitservice.dto.patient.BatchPatientDto;
 import org.example.visitservice.service.contracts.DiagnoseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,8 +38,8 @@ public class DiagnoseController {
     }
 
     @GetMapping("/patients/{diagnoseId}")
-    public ResponseEntity<List<PatientDto>> getPatientsByDiagnose(@PathVariable long diagnoseId) {
-        List<PatientDto> patients = diagnoseService.getPatientsByDiagnoseId(diagnoseId);
+    public ResponseEntity<BatchPatientDto> getPatientsByDiagnose(@PathVariable long diagnoseId) {
+        BatchPatientDto patients = diagnoseService.getPatientsByDiagnoseId(diagnoseId);
         return ResponseEntity.ok(patients);
     }
 

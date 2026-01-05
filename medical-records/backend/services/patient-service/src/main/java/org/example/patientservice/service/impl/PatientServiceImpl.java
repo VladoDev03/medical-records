@@ -7,15 +7,20 @@ import org.example.patientservice.config.ModelMapperConfig;
 import org.example.patientservice.data.entity.Patient;
 import org.example.patientservice.data.repo.PatientRepository;
 import org.example.patientservice.dto.doctor.DoctorDto;
+import org.example.patientservice.dto.patient.BatchPatientDto;
 import org.example.patientservice.dto.patient.CreatePatientDto;
 import org.example.patientservice.dto.patient.GpPatientCountDto;
 import org.example.patientservice.dto.patient.PatientDto;
 import org.example.patientservice.exception.EntityNotFoundException;
+import org.example.patientservice.exception.ExternalServiceUnavailableException;
 import org.example.patientservice.service.contracts.PatientService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,6 +43,31 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    public BatchPatientDto getPatientsBatch(List<Long> ids) {
+        List<PatientDto> patients =
+                mapperConfig.mapList(patientRepository.findAllById(ids), PatientDto.class);
+
+        Set<Long> foundIds = patients.stream()
+                .map(PatientDto::getId)
+                .collect(Collectors.toSet());
+
+        List<Long> missingIds = ids.stream()
+                .filter(id -> !foundIds.contains(id))
+                .toList();
+
+        String message = "";
+
+        if (!missingIds.isEmpty()) {
+            message = "Patients with the following ids were not found: " +
+                    missingIds.stream()
+                            .map(String::valueOf)
+                            .collect(Collectors.joining(", "));
+        }
+
+        return new BatchPatientDto(patients, message);
+    }
+
+    @Override
     public PatientDto createPatient(CreatePatientDto patient) {
         DoctorDto doctor;
 
@@ -45,6 +75,8 @@ public class PatientServiceImpl implements PatientService {
             doctor = doctorClient.getDoctorById(patient.getGpId());
         } catch (FeignException.NotFound e) {
             throw new IllegalArgumentException("Doctor not found with id: " + patient.getGpId());
+        } catch (FeignException | ResourceAccessException e) {
+            throw new ExternalServiceUnavailableException("Doctor service is currently unavailable.");
         }
 
         Patient newPatient = mapperConfig.getModelMapper().map(patient, Patient.class);

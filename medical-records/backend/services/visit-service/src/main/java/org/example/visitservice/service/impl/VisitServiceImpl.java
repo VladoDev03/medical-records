@@ -15,9 +15,11 @@ import org.example.visitservice.dto.visit.DoctorVisitCountDto;
 import org.example.visitservice.dto.visit.UpdateVisitDto;
 import org.example.visitservice.dto.visit.VisitDto;
 import org.example.visitservice.exception.EntityNotFoundException;
+import org.example.visitservice.exception.ExternalServiceUnavailableException;
 import org.example.visitservice.service.contracts.DiagnoseService;
 import org.example.visitservice.service.contracts.VisitService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -46,6 +48,8 @@ public class VisitServiceImpl implements VisitService {
             patientClient.getPatientById(patientId);
         } catch (FeignException.NotFound e) {
             throw new IllegalArgumentException("Patient not found with id: " + patientId);
+        } catch (FeignException | ResourceAccessException e) {
+            throw new ExternalServiceUnavailableException("Patient service is currently unavailable.");
         }
 
         return mapperConfig.mapList(visitRepository.findAllByPatientId(patientId), VisitDto.class);
@@ -66,12 +70,16 @@ public class VisitServiceImpl implements VisitService {
             doctor = doctorClient.getDoctorById(visit.getDoctorId());
         } catch (FeignException.NotFound e) {
             throw new IllegalArgumentException("Doctor not found with id: " + visit.getDoctorId());
+        } catch (FeignException | ResourceAccessException e) {
+            throw new ExternalServiceUnavailableException("Doctor service is currently unavailable.");
         }
 
         try {
             patient = patientClient.getPatientById(visit.getPatientId());
         } catch (FeignException.NotFound e) {
             throw new IllegalArgumentException("Patient not found with id: " + visit.getPatientId());
+        } catch (FeignException | ResourceAccessException e) {
+            throw new ExternalServiceUnavailableException("Patient service is currently unavailable.");
         }
 
         if (Objects.equals(patient.getKeycloakId(), doctor.getKeycloakId())) {
@@ -108,8 +116,15 @@ public class VisitServiceImpl implements VisitService {
 
     @Override
     public List<DoctorVisitCountDto> getVisitCountsForAllDoctors() {
-        List<DoctorDto> allDoctors = doctorClient.getAllDoctors();
-        List<DoctorVisitCountDto> counts = mapperConfig.mapList(visitRepository.countVisitsGroupedByDoctor(), DoctorVisitCountDto.class);
+        List<DoctorDto> allDoctors;
+
+        try {
+            allDoctors = doctorClient.getAllDoctors();
+        } catch (FeignException | ResourceAccessException e) {
+            throw new ExternalServiceUnavailableException("Doctor service is currently unavailable.");
+        }
+
+        List<DoctorVisitCountDto> counts = visitRepository.countVisitsGroupedByDoctor();
 
         Map<Long, Long> visitMap = counts
                 .stream()
@@ -135,6 +150,8 @@ public class VisitServiceImpl implements VisitService {
             doctorClient.getDoctorById(doctorId);
         } catch (FeignException.NotFound e) {
             throw new IllegalArgumentException("Doctor not found with id: " + doctorId);
+        } catch (FeignException | ResourceAccessException e) {
+            throw new ExternalServiceUnavailableException("Doctor service is currently unavailable.");
         }
 
         return mapperConfig.mapList(

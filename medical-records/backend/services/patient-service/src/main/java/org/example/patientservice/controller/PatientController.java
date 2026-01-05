@@ -2,6 +2,7 @@ package org.example.patientservice.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.example.patientservice.dto.patient.BatchPatientDto;
 import org.example.patientservice.dto.patient.CreatePatientDto;
 import org.example.patientservice.dto.patient.GpPatientCountDto;
 import org.example.patientservice.dto.patient.PatientDto;
@@ -28,6 +29,12 @@ public class PatientController {
     public ResponseEntity<PatientDto> getPatient(@PathVariable long id) {
         PatientDto patient = patientService.getPatientById(id);
         return ResponseEntity.ok(patient);
+    }
+
+    @GetMapping("/batch")
+    public ResponseEntity<BatchPatientDto> getPatientsBatch(@RequestParam List<Long> ids) {
+        BatchPatientDto patients = patientService.getPatientsBatch(ids);
+        return ResponseEntity.ok(patients);
     }
 
     @PostMapping
