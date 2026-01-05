@@ -18,6 +18,7 @@ import org.example.visitservice.service.contracts.DiagnoseService;
 import org.example.visitservice.service.contracts.VisitService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -39,6 +40,12 @@ public class VisitServiceImpl implements VisitService {
 
     @Override
     public List<VisitDto> getVisitsByPatientId(long patientId) {
+        try {
+            patientClient.getPatientById(patientId);
+        } catch (FeignException.NotFound e) {
+            throw new IllegalArgumentException("Patient not found with id: " + patientId);
+        }
+
         return mapperConfig.mapList(visitRepository.findAllByPatientId(patientId), VisitDto.class);
     }
 
@@ -103,6 +110,28 @@ public class VisitServiceImpl implements VisitService {
                 .stream()
                 .map(d -> new DoctorVisitCountDto(d.getId(), visitMap.getOrDefault(d.getId(), 0L)))
                 .toList();
+    }
+
+    @Override
+    public List<VisitDto> getVisitsInPeriod(LocalDate startDate, LocalDate endDate) {
+        return mapperConfig.mapList(
+                visitRepository.findAllByVisitDateBetween(startDate, endDate),
+                VisitDto.class
+        );
+    }
+
+    @Override
+    public List<VisitDto> getVisitsForDoctorInPeriod(long doctorId, LocalDate startDate, LocalDate endDate) {
+        try {
+            doctorClient.getDoctorById(doctorId);
+        } catch (FeignException.NotFound e) {
+            throw new IllegalArgumentException("Doctor not found with id: " + doctorId);
+        }
+
+        return mapperConfig.mapList(
+                visitRepository.findAllByDoctorIdAndVisitDateBetween(doctorId, startDate, endDate),
+                VisitDto.class
+        );
     }
 
     private Visit findVisitOrThrow(long id) {

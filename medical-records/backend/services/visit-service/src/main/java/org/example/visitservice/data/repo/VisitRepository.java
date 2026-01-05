@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.example.visitservice.data.entity.Visit;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface VisitRepository extends JpaRepository<Visit, Long> {
@@ -17,4 +18,12 @@ public interface VisitRepository extends JpaRepository<Visit, Long> {
     @Query("SELECT new org.example.visitservice.dto.visit.DoctorVisitCountDto(v.doctorId, COUNT(v)) " +
             "FROM Visit v GROUP BY v.doctorId")
     List<DoctorVisitCountDto> countVisitsGroupedByDoctor();
+
+    List<Visit> findAllByVisitDateBetween(LocalDate startDate, LocalDate endDate);
+
+    List<Visit> findAllByDoctorIdAndVisitDateBetween(
+            long doctorId,
+            LocalDate startDate,
+            LocalDate endDate
+    );
 }

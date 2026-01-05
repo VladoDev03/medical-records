@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -53,5 +54,26 @@ public class VisitController {
     public ResponseEntity<List<DoctorVisitCountDto>> getVisitCountsByDoctor() {
         List<DoctorVisitCountDto> counts = visitService.getVisitCountsForAllDoctors();
         return ResponseEntity.ok(counts);
+    }
+
+    @GetMapping("/period")
+    public ResponseEntity<List<VisitDto>> getVisitsInPeriod(
+            @RequestParam LocalDate startDate,
+            @RequestParam LocalDate endDate
+    ) {
+        return ResponseEntity.ok(
+                visitService.getVisitsInPeriod(startDate, endDate)
+        );
+    }
+
+    @GetMapping("/doctor/{doctorId}/period")
+    public ResponseEntity<List<VisitDto>> getVisitsForDoctorInPeriod(
+            @PathVariable long doctorId,
+            @RequestParam LocalDate startDate,
+            @RequestParam LocalDate endDate
+    ) {
+        return ResponseEntity.ok(
+                visitService.getVisitsForDoctorInPeriod(doctorId, startDate, endDate)
+        );
     }
 }

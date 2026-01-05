@@ -3,6 +3,7 @@ package org.example.patientservice.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.patientservice.dto.patient.CreatePatientDto;
+import org.example.patientservice.dto.patient.GpPatientCountDto;
 import org.example.patientservice.dto.patient.PatientDto;
 import org.example.patientservice.service.contracts.PatientService;
 import org.springframework.http.HttpStatus;
@@ -33,5 +34,19 @@ public class PatientController {
     public ResponseEntity<PatientDto> createPatient(@RequestBody @Valid CreatePatientDto patientDto) {
         PatientDto createdPatient = patientService.createPatient(patientDto);
         return new ResponseEntity<>(createdPatient, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/gp/{gpId}")
+    public ResponseEntity<List<PatientDto>> getPatientsByGp(@PathVariable long gpId) {
+        return ResponseEntity.ok(
+                patientService.getPatientsByGpId(gpId)
+        );
+    }
+
+    @GetMapping("/gp/counts")
+    public ResponseEntity<List<GpPatientCountDto>> getPatientCountsForAllGp() {
+        return ResponseEntity.ok(
+                patientService.getPatientCountsForAllGp()
+        );
     }
 }
