@@ -6,7 +6,9 @@ import org.example.visitservice.data.entity.SickLeave;
 import org.example.visitservice.data.entity.Visit;
 import org.example.visitservice.data.repo.SickLeaveRepository;
 import org.example.visitservice.dto.sickleave.CreateSickLeaveDto;
+import org.example.visitservice.dto.sickleave.DoctorSickLeaveCountDto;
 import org.example.visitservice.dto.sickleave.SickLeaveDto;
+import org.example.visitservice.dto.sickleave.SickLeaveMonthCountDto;
 import org.example.visitservice.exception.EntityNotFoundException;
 import org.example.visitservice.service.contracts.SickLeaveService;
 import org.example.visitservice.service.contracts.VisitService;
@@ -49,5 +51,39 @@ public class SickLeaveServiceImpl implements SickLeaveService {
         SickLeave savedVisit = sickLeaveRepository.save(newSickLeave);
 
         return mapperConfig.getModelMapper().map(savedVisit, SickLeaveDto.class);
+    }
+
+    @Override
+    public List<SickLeaveMonthCountDto> getMostActiveSickLeaveMonths(int year) {
+        List<SickLeaveMonthCountDto> counts =
+                sickLeaveRepository.countSickLeavesByMonth(year);
+
+        if (counts.isEmpty()) {
+            return List.of();
+        }
+
+        long max = counts.getFirst().getCount();
+
+        return counts
+                .stream()
+                .filter(c -> c.getCount() == max)
+                .toList();
+    }
+
+    @Override
+    public List<DoctorSickLeaveCountDto> getDoctorsWithMostSickLeaves() {
+        List<DoctorSickLeaveCountDto> counts =
+                sickLeaveRepository.countSickLeavesByDoctor();
+
+        if (counts.isEmpty()) {
+            return List.of();
+        }
+
+        long max = counts.getFirst().getCount();
+
+        return counts
+                .stream()
+                .filter(c -> c.getCount() == max)
+                .toList();
     }
 }

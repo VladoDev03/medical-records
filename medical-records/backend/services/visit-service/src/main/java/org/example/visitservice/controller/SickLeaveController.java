@@ -3,7 +3,9 @@ package org.example.visitservice.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.visitservice.dto.sickleave.CreateSickLeaveDto;
+import org.example.visitservice.dto.sickleave.DoctorSickLeaveCountDto;
 import org.example.visitservice.dto.sickleave.SickLeaveDto;
+import org.example.visitservice.dto.sickleave.SickLeaveMonthCountDto;
 import org.example.visitservice.service.contracts.SickLeaveService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +35,19 @@ public class SickLeaveController {
     public ResponseEntity<SickLeaveDto> createSickLeave(@RequestBody @Valid CreateSickLeaveDto sickLeaveDto) {
         SickLeaveDto createdSickLeave = sickLeaveService.createSickLeave(sickLeaveDto);
         return new ResponseEntity<>(createdSickLeave, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/most-active-months")
+    public ResponseEntity<List<SickLeaveMonthCountDto>> getMostActiveMonths(@RequestParam int year) {
+        return ResponseEntity.ok(
+                sickLeaveService.getMostActiveSickLeaveMonths(year)
+        );
+    }
+
+    @GetMapping("/top-doctors")
+    public ResponseEntity<List<DoctorSickLeaveCountDto>> getTopDoctors() {
+        return ResponseEntity.ok(
+                sickLeaveService.getDoctorsWithMostSickLeaves()
+        );
     }
 }
