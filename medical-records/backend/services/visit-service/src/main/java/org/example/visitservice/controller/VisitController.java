@@ -46,8 +46,8 @@ public class VisitController {
 
     @PutMapping("/{id}")
     public ResponseEntity<VisitDto> updateVisit(@PathVariable long id, @RequestBody @Valid UpdateVisitDto visitDto) {
-        VisitDto createVisit = visitService.updateVisit(id, visitDto);
-        return ResponseEntity.ok(createVisit);
+        VisitDto updatedVisit = visitService.updateVisit(id, visitDto);
+        return ResponseEntity.ok(updatedVisit);
     }
 
     @GetMapping("/doctor/counts")

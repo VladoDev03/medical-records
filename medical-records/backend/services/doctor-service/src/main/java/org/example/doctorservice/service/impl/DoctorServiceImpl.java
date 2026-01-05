@@ -7,11 +7,13 @@ import org.example.doctorservice.data.entity.Speciality;
 import org.example.doctorservice.data.repo.DoctorRepository;
 import org.example.doctorservice.dto.doctor.CreateDoctorDto;
 import org.example.doctorservice.dto.doctor.DoctorDto;
+import org.example.doctorservice.dto.doctor.UpdateDoctorDto;
 import org.example.doctorservice.exception.EntityNotFoundException;
 import org.example.doctorservice.service.contracts.DoctorService;
 import org.example.doctorservice.service.contracts.SpecialityService;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,8 +32,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public DoctorDto getDoctorById(long id) {
-        Doctor doctor = doctorRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Doctor not found with id: " + id));
+        Doctor doctor = findDoctorOrThrow(id);
 
         return mapperConfig.getModelMapper().map(doctor, DoctorDto.class);
     }
@@ -58,5 +59,36 @@ public class DoctorServiceImpl implements DoctorService {
         );
 
         return result;
+    }
+
+    @Override
+    public DoctorDto updateDoctor(long id, UpdateDoctorDto doctorDto) {
+        Doctor doctor = findDoctorOrThrow(id);
+
+        Set<Speciality> specialities = specialityService
+                .getSpecialitiesByIds(doctorDto.getSpecialityIds())
+                .stream()
+                .map(speciality -> mapperConfig.getModelMapper().map(speciality, Speciality.class))
+                .collect(Collectors.toSet());
+
+        doctor.setSpecialities(specialities);
+        DoctorDto updatedDoctor = mapperConfig.getModelMapper().map(doctorRepository.save(doctor), DoctorDto.class);
+
+        updatedDoctor.setSpecialityNames(specialities
+                .stream()
+                .map(Speciality::getName)
+                .toList()
+        );
+
+        return updatedDoctor;
+    }
+
+    private Set<Speciality> getSpecialitiesFromIds() {
+        return new HashSet<>();
+    }
+
+    private Doctor findDoctorOrThrow(long id) {
+        return doctorRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Doctor not found with id: " + id));
     }
 }

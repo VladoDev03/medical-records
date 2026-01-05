@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.doctorservice.dto.doctor.CreateDoctorDto;
 import org.example.doctorservice.dto.doctor.DoctorDto;
+import org.example.doctorservice.dto.doctor.UpdateDoctorDto;
 import org.example.doctorservice.service.contracts.DoctorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +34,11 @@ public class DoctorController {
     public ResponseEntity<DoctorDto> createDoctor(@RequestBody @Valid CreateDoctorDto doctorDto) {
         DoctorDto createdDoctor = doctorService.createDoctor(doctorDto);
         return new ResponseEntity<>(createdDoctor, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<DoctorDto> updateDoctor(@PathVariable long id, @RequestBody @Valid UpdateDoctorDto doctorDto) {
+        DoctorDto updatedDoctor = doctorService.updateDoctor(id, doctorDto);
+        return ResponseEntity.ok(updatedDoctor);
     }
 }
