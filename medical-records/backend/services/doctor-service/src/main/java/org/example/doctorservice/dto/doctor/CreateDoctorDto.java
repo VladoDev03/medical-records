@@ -1,5 +1,6 @@
 package org.example.doctorservice.dto.doctor;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +17,9 @@ import java.util.List;
 public class CreateDoctorDto {
     @NotNull
     private String keycloakId;
+
+    @JsonProperty("isGp")
+    private boolean isGp;
 
     @NotNull
     private List<Long> specialityIds = new ArrayList<>();

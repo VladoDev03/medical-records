@@ -33,6 +33,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     unique: true
+              - column:
+                  name: is_gp
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
         - createTable:
             tableName: doctor_has_speciality
             columns:

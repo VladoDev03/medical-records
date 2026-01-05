@@ -15,6 +15,9 @@ public class Doctor extends BaseEntity {
     @Column(name = "keycloak_id", nullable = false, unique = true)
     private String keycloakId;
 
+    @Column(name = "is_gp", nullable = false)
+    private boolean isGp;
+
     @ManyToMany
     @JoinTable(
             name = "doctor_has_speciality",

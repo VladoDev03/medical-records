@@ -30,6 +30,7 @@ public class ModelMapperConfig {
                 .addMappings(m -> {
                     m.map(Doctor::getId, DoctorDto::setId);
                     m.map(Doctor::getKeycloakId, DoctorDto::setKeycloakId);
+                    m.map(Doctor::isGp, DoctorDto::setGp);
                     m.using(specialitiesToNamesConverter())
                             .map(Doctor::getSpecialities, DoctorDto::setSpecialityNames);
                 });

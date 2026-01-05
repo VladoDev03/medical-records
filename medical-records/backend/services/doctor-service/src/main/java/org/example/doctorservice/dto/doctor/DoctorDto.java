@@ -15,5 +15,6 @@ import java.util.List;
 public class DoctorDto {
     private long id;
     private String keycloakId;
+    private boolean isGp;
     private List<String> specialityNames = new ArrayList<>();
 }
