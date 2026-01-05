@@ -9,6 +9,7 @@ import org.example.visitservice.data.entity.Diagnose;
 import org.example.visitservice.data.entity.Visit;
 import org.example.visitservice.data.repo.VisitRepository;
 import org.example.visitservice.dto.doctor.DoctorDto;
+import org.example.visitservice.dto.patient.PatientDto;
 import org.example.visitservice.dto.visit.CreateVisitDto;
 import org.example.visitservice.dto.visit.DoctorVisitCountDto;
 import org.example.visitservice.dto.visit.UpdateVisitDto;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -57,16 +59,23 @@ public class VisitServiceImpl implements VisitService {
 
     @Override
     public VisitDto createVisit(CreateVisitDto visit) {
+        PatientDto patient;
+        DoctorDto doctor;
+
         try {
-            doctorClient.getDoctorById(visit.getDoctorId());
+            doctor = doctorClient.getDoctorById(visit.getDoctorId());
         } catch (FeignException.NotFound e) {
             throw new IllegalArgumentException("Doctor not found with id: " + visit.getDoctorId());
         }
 
         try {
-            patientClient.getPatientById(visit.getPatientId());
+            patient = patientClient.getPatientById(visit.getPatientId());
         } catch (FeignException.NotFound e) {
             throw new IllegalArgumentException("Patient not found with id: " + visit.getPatientId());
+        }
+
+        if (Objects.equals(patient.getKeycloakId(), doctor.getKeycloakId())) {
+            throw new IllegalArgumentException("Patient cannot visit himself.");
         }
 
         Visit newVisit = mapperConfig.getModelMapper().map(visit, Visit.class);
