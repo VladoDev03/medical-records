@@ -9,11 +9,13 @@ import org.example.visitservice.dto.visit.VisitDto;
 import org.example.visitservice.service.contracts.VisitService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@PreAuthorize("hasAuthority('admin')")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/visits")
@@ -38,12 +40,14 @@ public class VisitController {
         return ResponseEntity.ok(visit);
     }
 
+    @PreAuthorize("hasAuthority('patient')")
     @PostMapping
     public ResponseEntity<VisitDto> createVisit(@RequestBody @Valid CreateVisitDto visitDto) {
         VisitDto createVisit = visitService.createVisit(visitDto);
         return new ResponseEntity<>(createVisit, HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasAuthority('doctor')")
     @PutMapping("/{id}")
     public ResponseEntity<VisitDto> updateVisit(@PathVariable long id, @RequestBody @Valid UpdateVisitDto visitDto) {
         VisitDto updatedVisit = visitService.updateVisit(id, visitDto);

@@ -9,22 +9,26 @@ import org.example.visitservice.dto.patient.BatchPatientDto;
 import org.example.visitservice.service.contracts.DiagnoseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@PreAuthorize("hasAuthority('admin')")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/diagnoses")
 public class DiagnoseController {
     private final DiagnoseService diagnoseService;
 
+    @PreAuthorize("hasAuthority('doctor') or hasAuthority('patient')")
     @GetMapping
     public ResponseEntity<List<DiagnoseDto>> getDiagnoses() {
         List<DiagnoseDto> diagnoses = diagnoseService.getDiagnoses();
         return ResponseEntity.ok(diagnoses);
     }
 
+    @PreAuthorize("hasAuthority('doctor') or hasAuthority('patient')")
     @GetMapping("/{id}")
     public ResponseEntity<DiagnoseDto> getDiagnoseById(@PathVariable long id) {
         DiagnoseDto diagnose = diagnoseService.getDiagnoseById(id);
@@ -37,12 +41,14 @@ public class DiagnoseController {
         return new ResponseEntity<>(createdDiagnose, HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasAuthority('doctor')")
     @GetMapping("/patients/{diagnoseId}")
     public ResponseEntity<BatchPatientDto> getPatientsByDiagnose(@PathVariable long diagnoseId) {
         BatchPatientDto patients = diagnoseService.getPatientsByDiagnoseId(diagnoseId);
         return ResponseEntity.ok(patients);
     }
 
+    @PreAuthorize("hasAuthority('doctor') or hasAuthority('patient')")
     @GetMapping("/most-frequent")
     public ResponseEntity<List<DiagnoseCountDto>> getMostFrequentDiagnoses() {
         return ResponseEntity.ok(diagnoseService.getMostFrequentDiagnoses());

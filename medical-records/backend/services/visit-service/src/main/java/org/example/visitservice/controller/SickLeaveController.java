@@ -9,10 +9,12 @@ import org.example.visitservice.dto.sickleave.SickLeaveMonthCountDto;
 import org.example.visitservice.service.contracts.SickLeaveService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@PreAuthorize("hasAuthority('admin')")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/sick-leaves")
@@ -31,6 +33,7 @@ public class SickLeaveController {
         return ResponseEntity.ok(sickLeave);
     }
 
+    @PreAuthorize("hasAuthority('doctor')")
     @PostMapping
     public ResponseEntity<SickLeaveDto> createSickLeave(@RequestBody @Valid CreateSickLeaveDto sickLeaveDto) {
         SickLeaveDto createdSickLeave = sickLeaveService.createSickLeave(sickLeaveDto);

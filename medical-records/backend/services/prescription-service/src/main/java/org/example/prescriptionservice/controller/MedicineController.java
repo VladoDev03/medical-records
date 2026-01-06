@@ -7,21 +7,25 @@ import org.example.prescriptionservice.dto.medicine.MedicineDto;
 import org.example.prescriptionservice.service.contracts.MedicineService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@PreAuthorize("hasAuthority('admin')")
 @RestController
 @RequestMapping("/api/medicines")
 @RequiredArgsConstructor
 public class MedicineController {
     private final MedicineService medicineService;
 
+    @PreAuthorize("hasAuthority('doctor')")
     @GetMapping
     public Flux<MedicineDto> getMedicines() {
         return medicineService.getMedicines();
     }
 
+    @PreAuthorize("hasAuthority('doctor')")
     @GetMapping("/{id}")
     public Mono<MedicineDto> getMedicineById(@PathVariable String id) {
         return medicineService.getMedicineById(id);

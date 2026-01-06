@@ -9,10 +9,12 @@ import org.example.patientservice.dto.patient.PatientDto;
 import org.example.patientservice.service.contracts.PatientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@PreAuthorize("hasAuthority('admin')")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/patients")
@@ -25,12 +27,14 @@ public class PatientController {
         return ResponseEntity.ok(patients);
     }
 
+    @PreAuthorize("hasAuthority('doctor') or hasAuthority('patient')")
     @GetMapping("/{id}")
     public ResponseEntity<PatientDto> getPatient(@PathVariable long id) {
         PatientDto patient = patientService.getPatientById(id);
         return ResponseEntity.ok(patient);
     }
 
+    @PreAuthorize("hasAuthority('doctor')")
     @GetMapping("/batch")
     public ResponseEntity<BatchPatientDto> getPatientsBatch(@RequestParam List<Long> ids) {
         BatchPatientDto patients = patientService.getPatientsBatch(ids);
