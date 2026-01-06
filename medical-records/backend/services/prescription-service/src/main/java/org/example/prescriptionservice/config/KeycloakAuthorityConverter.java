@@ -5,25 +5,25 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
-public class KeycloakAuthorityConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
-    @Override
-    public Collection<GrantedAuthority> convert(Jwt source) {
+public class KeycloakAuthorityConverter
+        implements Converter<Jwt, Collection<GrantedAuthority>> {
 
-        Map<String, Object> realm = (Map<String, Object>) source.getClaims().get("realm_access");
+    @Override
+    public Collection<GrantedAuthority> convert(Jwt jwt) {
+        Map<String, Object> realm =
+                (Map<String, Object>) jwt.getClaims().get("realm_access");
+
         if (realm == null || realm.isEmpty()) {
-            return new ArrayList();
+            return List.of();
         }
 
-        Collection<GrantedAuthority> authorities = ((List<String>) realm.get("roles"))
-                .stream()
+        List<String> roles = (List<String>) realm.get("roles");
+
+        return roles.stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
-        return authorities;
     }
 }

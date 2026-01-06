@@ -11,10 +11,13 @@ public class VisitClient {
     private final WebClient webClient;
 
     public VisitClient(
-            WebClient.Builder builder,
-            @Value("${visit.service.url}") String visitServiceUrl
+            WebClient webClient,
+            @Value("${visit.service.url}") String baseUrl
     ) {
-        this.webClient = builder.baseUrl(visitServiceUrl).build();
+        this.webClient = webClient
+                .mutate()
+                .baseUrl(baseUrl)
+                .build();
     }
 
     public Mono<VisitDto> getVisitById(Long id) {

@@ -30,6 +30,7 @@ public class SecurityConfig {
     public ReactiveJwtAuthenticationConverterAdapter jwtAuthenticationConverter(KeycloakAuthorityConverter converter) {
         JwtAuthenticationConverter jwtConverter = new JwtAuthenticationConverter();
         jwtConverter.setJwtGrantedAuthoritiesConverter(converter);
+
         return new ReactiveJwtAuthenticationConverterAdapter(jwtConverter);
     }
 

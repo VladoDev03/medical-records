@@ -11,10 +11,13 @@ public class DoctorClient {
     private final WebClient webClient;
 
     public DoctorClient(
-            WebClient.Builder builder,
-            @Value("${doctor.service.url}") String doctorServiceUrl
+            WebClient webClient,
+            @Value("${doctor.service.url}") String baseUrl
     ) {
-        this.webClient = builder.baseUrl(doctorServiceUrl).build();
+        this.webClient = webClient
+                .mutate()
+                .baseUrl(baseUrl)
+                .build();
     }
 
     public Mono<DoctorDto> getDoctorById(Long id) {
