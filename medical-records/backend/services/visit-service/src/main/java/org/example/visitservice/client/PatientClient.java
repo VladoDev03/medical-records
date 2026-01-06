@@ -1,5 +1,6 @@
 package org.example.visitservice.client;
 
+import org.example.visitservice.config.FeignClientConfig;
 import org.example.visitservice.dto.patient.BatchPatientDto;
 import org.example.visitservice.dto.patient.PatientDto;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "patient-service")
+@FeignClient(name = "patient-service", configuration = FeignClientConfig.class)
 @Component
 public interface PatientClient {
     @GetMapping("/api/patients/{id}")
