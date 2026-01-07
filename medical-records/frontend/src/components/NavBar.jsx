@@ -9,6 +9,7 @@ export default function NavBar() {
 
     return (
         <nav style={{ padding: 10, borderBottom: '1px solid gray' }}>
+            {roles.includes('admin') && (<Link to="/admin">Admin</Link>)}{" "}
             {roles.includes('doctor') && (<Link to="/doctor">Doctor</Link>)}{" "}
             {roles.includes('patient') && (<Link to="/patient">Patient</Link>)}{" "}
             {isLoggedIn && (
