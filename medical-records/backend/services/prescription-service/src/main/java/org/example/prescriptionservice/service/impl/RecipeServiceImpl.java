@@ -82,6 +82,17 @@ public class RecipeServiceImpl implements RecipeService {
                 .onErrorMap(e -> new RuntimeException("Failed to create recipe", e));
     }
 
+    @Override
+    public Mono<Void> deleteRecipe(String id) {
+        return recipeRepository.existsById(id)
+                .flatMap(exists -> {
+                    if (!exists) {
+                        return Mono.error(new DocumentNotFoundException("Recipe with id " + id + " not found", 404));
+                    }
+                    return recipeRepository.deleteById(id);
+                });
+    }
+
     private void validateDuplicateMedicines(CreateRecipeDto recipe) {
         List<String> medicineIds = recipe.getMedicines()
                 .stream()

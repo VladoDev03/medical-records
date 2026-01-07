@@ -17,4 +17,5 @@ public interface VisitService {
     List<DoctorVisitCountDto> getVisitCountsForAllDoctors();
     List<VisitDto> getVisitsInPeriod(LocalDate startDate, LocalDate endDate);
     List<VisitDto> getVisitsForDoctorInPeriod(long doctorId, LocalDate startDate, LocalDate endDate);
+    void deleteVisit(long id);
 }

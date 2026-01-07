@@ -160,6 +160,20 @@ public class VisitServiceImpl implements VisitService {
         );
     }
 
+    @Override
+    public void deleteVisit(long id) {
+        Visit visit = visitRepository.findById(id)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Visit not found with id: " + id)
+                );
+
+        if (!visit.getVisitDate().isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Cannot delete a visit that has already passed or is today.");
+        }
+
+        visitRepository.delete(visit);
+    }
+
     private Visit findVisitOrThrow(long id) {
         return visitRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Visit not found with id: " + id));

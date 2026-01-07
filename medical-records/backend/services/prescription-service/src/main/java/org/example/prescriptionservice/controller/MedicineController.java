@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.prescriptionservice.dto.medicine.CreateMedicineDto;
 import org.example.prescriptionservice.dto.medicine.MedicineDto;
+import org.example.prescriptionservice.dto.medicine.UpdateMedicineDto;
 import org.example.prescriptionservice.service.contracts.MedicineService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,5 +36,14 @@ public class MedicineController {
     public Mono<ResponseEntity<MedicineDto>> createMedicine(@RequestBody @Valid CreateMedicineDto medicineDto) {
         return medicineService.createMedicine(medicineDto)
                 .map(createdMedicine -> new ResponseEntity<>(createdMedicine, HttpStatus.CREATED));
+    }
+
+    @PutMapping("/{id}")
+    public Mono<ResponseEntity<MedicineDto>> updateMedicine(
+            @PathVariable String id,
+            @RequestBody @Valid UpdateMedicineDto medicineDto
+    ) {
+        return medicineService.updateMedicine(id, medicineDto)
+                .map(ResponseEntity::ok);
     }
 }

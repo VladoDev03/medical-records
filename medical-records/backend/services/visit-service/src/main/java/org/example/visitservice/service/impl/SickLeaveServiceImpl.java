@@ -86,4 +86,9 @@ public class SickLeaveServiceImpl implements SickLeaveService {
                 .filter(c -> c.getCount() == max)
                 .toList();
     }
+
+    @Override
+    public void deleteSickLeave(long id) {
+        sickLeaveRepository.deleteById(id);
+    }
 }

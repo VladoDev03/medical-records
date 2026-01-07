@@ -13,4 +13,5 @@ public interface SickLeaveService {
     SickLeaveDto createSickLeave(CreateSickLeaveDto sickLeave);
     List<SickLeaveMonthCountDto> getMostActiveSickLeaveMonths(int year);
     List<DoctorSickLeaveCountDto> getDoctorsWithMostSickLeaves();
+    void deleteSickLeave(long id);
 }

@@ -80,4 +80,10 @@ public class VisitController {
                 visitService.getVisitsForDoctorInPeriod(doctorId, startDate, endDate)
         );
     }
+
+    @PreAuthorize("hasAuthority('doctor') or hasAuthority('patient')")
+    @DeleteMapping("/{id}")
+    public void deleteVisit(@PathVariable long id) {
+        visitService.deleteVisit(id);
+    }
 }

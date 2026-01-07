@@ -36,4 +36,14 @@ public class RecipeController {
         return recipeService.createRecipe(recipeDto)
                 .map(createdRecipe -> new ResponseEntity<>(createdRecipe, HttpStatus.CREATED));
     }
+
+    @PreAuthorize("hasAuthority('admin')")
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<ResponseEntity<Void>> deleteRecipe(@PathVariable String id) {
+        return recipeService.deleteRecipe(id)
+                .then(Mono.just(ResponseEntity.noContent().<Void>build()))
+                .onErrorResume(Exception.class, e ->
+                        Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()));
+    }
 }

@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.doctorservice.dto.speciality.CreateSpecialityDto;
 import org.example.doctorservice.dto.speciality.SpecialityDto;
+import org.example.doctorservice.dto.speciality.UpdateSpecialityDto;
 import org.example.doctorservice.service.contracts.SpecialityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,5 +38,11 @@ public class SpecialityController {
     public ResponseEntity<SpecialityDto> createSpeciality(@RequestBody @Valid CreateSpecialityDto specialityDto) {
         SpecialityDto createdSpeciality = specialityService.createSpeciality(specialityDto);
         return new ResponseEntity<>(createdSpeciality, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<SpecialityDto> updateSpeciality(@PathVariable long id, @RequestBody @Valid UpdateSpecialityDto specialityDto) {
+        SpecialityDto updatedSpeciality = specialityService.updateSpeciality(id, specialityDto);
+        return ResponseEntity.ok(updatedSpeciality);
     }
 }

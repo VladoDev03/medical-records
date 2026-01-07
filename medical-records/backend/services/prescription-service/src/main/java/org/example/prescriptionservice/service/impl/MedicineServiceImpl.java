@@ -5,6 +5,7 @@ import org.example.prescriptionservice.data.document.Medicine;
 import org.example.prescriptionservice.data.repo.MedicineRepository;
 import org.example.prescriptionservice.dto.medicine.CreateMedicineDto;
 import org.example.prescriptionservice.dto.medicine.MedicineDto;
+import org.example.prescriptionservice.dto.medicine.UpdateMedicineDto;
 import org.example.prescriptionservice.exception.DocumentNotFoundException;
 import org.example.prescriptionservice.service.contracts.MedicineService;
 import org.modelmapper.ModelMapper;
@@ -29,11 +30,7 @@ public class MedicineServiceImpl implements MedicineService {
 
     @Override
     public Mono<MedicineDto> getMedicineById(String id) {
-        return medicineRepository.findById(id)
-                .switchIfEmpty(Mono.error(new DocumentNotFoundException(
-                        "Medicine not found with id: " + id,
-                        HttpStatus.NOT_FOUND.value()
-                )))
+        return findMedicineOrThrow(id)
                 .map(medicine -> mapper.map(medicine, MedicineDto.class));
     }
 
@@ -43,7 +40,8 @@ public class MedicineServiceImpl implements MedicineService {
                 .collectList()
                 .flatMapMany(medicines -> {
                     if (medicines.size() != ids.size()) {
-                        List<String> foundIds = medicines.stream()
+                        List<String> foundIds = medicines
+                                .stream()
                                 .map(Medicine::getId)
                                 .toList();
 
@@ -71,5 +69,34 @@ public class MedicineServiceImpl implements MedicineService {
 
         return medicineRepository.save(newMedicine)
                 .map(savedMedicine -> mapper.map(savedMedicine, MedicineDto.class));
+    }
+
+    @Override
+    public Mono<MedicineDto> updateMedicine(String id, UpdateMedicineDto medicineDto) {
+        return findMedicineOrThrow(id)
+                .flatMap(existingMedicine -> {
+
+                    if (medicineDto.getName() != null) {
+                        existingMedicine.setName(medicineDto.getName());
+                    }
+
+                    if (medicineDto.getManufacturer() != null) {
+                        existingMedicine.setManufacturer(medicineDto.getManufacturer());
+                    }
+
+                    return medicineRepository.save(existingMedicine);
+                })
+                .map(savedMedicine -> mapper.map(savedMedicine, MedicineDto.class));
+    }
+
+
+    private Mono<Medicine> findMedicineOrThrow(String id) {
+        return medicineRepository.findById(id)
+                .switchIfEmpty(Mono.error(
+                        new DocumentNotFoundException(
+                                "Medicine not found with id: " + id,
+                                HttpStatus.NOT_FOUND.value()
+                        )
+                ));
     }
 }

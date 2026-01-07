@@ -9,4 +9,5 @@ public interface RecipeService {
     Flux<RecipeDto> getRecipes();
     Mono<RecipeDto> getRecipeById(String id);
     Mono<RecipeDto> createRecipe(CreateRecipeDto recipe);
+    Mono<Void> deleteRecipe(String id);
 }
