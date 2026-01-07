@@ -1,0 +1,1486 @@
+{
+	"info": {
+		"_postman_id": "f4bc05e0-ad96-4fc2-ab5d-9e6338ba44c4",
+		"name": "medical-records",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16363932",
+		"_collection_link": "https://galactic-equinox-940791.postman.co/workspace/My-Workspace~cd81d18d-528e-45bc-8d44-732c2901ea48/collection/16363932-f4bc05e0-ad96-4fc2-ab5d-9e6338ba44c4?action=share&source=collection_link&creator=16363932"
+	},
+	"item": [
+		{
+			"name": "patient",
+			"item": [
+				{
+					"name": "get all patients",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3NDk5MTgsImlhdCI6MTc2Nzc0OTYxOCwiYXV0aF90aW1lIjoxNzY3NzQ5NjE4LCJqdGkiOiJvbnJ0YWM6NzI5MjQxOGEtNzFlNy03NzU2LWIxOWItODllYzEyY2YwNzFiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMWQ1M2M2YjgtMGMwYy00YWMzLWFhMTItMGMwZWVjNzg2MjNkIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJlZGNkYTgxYi1iZGJlLTM5OGItNzY1OC05YWJmOTE5ODYwZTgiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6Im5vbmUgbm9uZSIsInByZWZlcnJlZF91c2VybmFtZSI6Im5vbmUiLCJnaXZlbl9uYW1lIjoibm9uZSIsImZhbWlseV9uYW1lIjoibm9uZSIsImVtYWlsIjoibm9uZUBub25lLm5vbmUifQ.c3y_Yb9yUg5BcF51VJtHuhS7Z1fIepB_9E3N5e6GiC1Tf4mDGdvBkLQG6nrT8H3QlBYb7RKaMXHxVvcEEt2blEE4AzBPqNUIz1rqlrI11vZkk499y4RL9mugpH8HxucvSMWsMpOzX7d4f3CQMAkB3eODhI_VIa6VZrK_gOAZ23ZOdImQymrlFbZFNBI-a7o8TUwokn1Yl7idzsaKVG5eMYSAg8mLMVixfBx0iwtDZjltq6RraAz3Vc6GyYsUI5ojPqI7dG-XoaLbqqc8CIqlsDBFx2j7M0n6pFBsGIpVQ7SkqGGgygZGQ4-eW-WhvngWrPmWoxVEd08JNJJe5gAqBA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test\",\r\n    \"price\": 1.2\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/patients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2Njc3NTgsImlhdCI6MTc2NzY2NzQ1OCwiYXV0aF90aW1lIjoxNzY3NjY3MTczLCJqdGkiOiJvbnJ0cnQ6OTM5YjU5ODItODliMi03N2QwLTA5YjctNDIzMWNlODhjMjY3IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiIyOGE1Mjk3MC01Nzc5LWExOGMtZjgxYi1mZjAzZmI4NjIyZTkiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.RNIeKXL-uApMeFFpSGGYmyherUeiX6jzN8LSFpGJVhmwEexl3wy4WWAUvoMhEWb3KXL5_PV3UqzrmE0hsJJMkYNMDtNhHfO5YkElSn37EcdSCDtuoSe72XAM6wCv35uNNYuTvelO9rBnegENPlylR-pmN-nsi0Qg0CZn-UjbnNSrZI-SG9PxRcCnOlP3n-Uv1zLWO6Br0BX6cl7rRvFOvyBovnLG7b8dipZQB7cbdzKtVi9wz9awusCgU8iunOKBNC5k5e7TEeG6V-ITnIM8INixvMxicMHoaivOIGgBp_Kp4wI3Md3Yp-30DN9cpuwRzkrUeRADyZ6EZb3mOyEKbg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"keycloakId\": \"2a5b7c3e-dc91-4a23-b5f1-8e72c5a7fcbа9\",\r\n    \"gpId\": 1,\r\n    \"lastDateInsured\": \"2025-10-25\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/patients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get patient by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3NDk5MTgsImlhdCI6MTc2Nzc0OTYxOCwiYXV0aF90aW1lIjoxNzY3NzQ5NjE4LCJqdGkiOiJvbnJ0YWM6NzI5MjQxOGEtNzFlNy03NzU2LWIxOWItODllYzEyY2YwNzFiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMWQ1M2M2YjgtMGMwYy00YWMzLWFhMTItMGMwZWVjNzg2MjNkIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJlZGNkYTgxYi1iZGJlLTM5OGItNzY1OC05YWJmOTE5ODYwZTgiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6Im5vbmUgbm9uZSIsInByZWZlcnJlZF91c2VybmFtZSI6Im5vbmUiLCJnaXZlbl9uYW1lIjoibm9uZSIsImZhbWlseV9uYW1lIjoibm9uZSIsImVtYWlsIjoibm9uZUBub25lLm5vbmUifQ.c3y_Yb9yUg5BcF51VJtHuhS7Z1fIepB_9E3N5e6GiC1Tf4mDGdvBkLQG6nrT8H3QlBYb7RKaMXHxVvcEEt2blEE4AzBPqNUIz1rqlrI11vZkk499y4RL9mugpH8HxucvSMWsMpOzX7d4f3CQMAkB3eODhI_VIa6VZrK_gOAZ23ZOdImQymrlFbZFNBI-a7o8TUwokn1Yl7idzsaKVG5eMYSAg8mLMVixfBx0iwtDZjltq6RraAz3Vc6GyYsUI5ojPqI7dG-XoaLbqqc8CIqlsDBFx2j7M0n6pFBsGIpVQ7SkqGGgygZGQ4-eW-WhvngWrPmWoxVEd08JNJJe5gAqBA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/patients/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"patients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get patients list by gp id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2NjM1NjksImlhdCI6MTc2NzY2MzI2OSwiYXV0aF90aW1lIjoxNzY3NjYzMjY5LCJqdGkiOiJvbnJ0YWM6MDAwYTdlOGEtZTJkMy0wODYzLTJhMzUtZDdlN2VlNDIyYzdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiI5Mzc4ZGM2Yy1hNjMyLTg0YmEtNjVhYS1jYzM3Zjc2ZTBhZjgiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.FfZNnm1MX7RDPF7NYDJtv-BDpUa1cSz7LcUzQJOR2WwbcYCm_BJ3vd3Dsh0QwQwTAhkK7wSfKCfPx8UqhTEa8PKnvxiwFjSH-qGhY-1QAyz9FQER2K83NpeJbim1E-c4_gx0kH5MrejccZT-2kp4RgAQlCNeQTcAJXRumMmrMxJzvkI-WCZ1LAicNPsOs2lxPEjxsuMpIBv7vzlPMmq3xmK3-FSCwbzqW87uveCgBa9OQjdd0s8JjlKwUzIOY6eWaT1kzt-OdJWGDS9yKwr6BDESSrO03FtimKJozB6dnrNqS9tyjp1tufw_C_cvun6f35V-QPvYZAaYven-Mr9WOw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/patients/gp/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"patients",
+								"gp",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get patients count of all gps",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2NjM1NjksImlhdCI6MTc2NzY2MzI2OSwiYXV0aF90aW1lIjoxNzY3NjYzMjY5LCJqdGkiOiJvbnJ0YWM6MDAwYTdlOGEtZTJkMy0wODYzLTJhMzUtZDdlN2VlNDIyYzdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiI5Mzc4ZGM2Yy1hNjMyLTg0YmEtNjVhYS1jYzM3Zjc2ZTBhZjgiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.FfZNnm1MX7RDPF7NYDJtv-BDpUa1cSz7LcUzQJOR2WwbcYCm_BJ3vd3Dsh0QwQwTAhkK7wSfKCfPx8UqhTEa8PKnvxiwFjSH-qGhY-1QAyz9FQER2K83NpeJbim1E-c4_gx0kH5MrejccZT-2kp4RgAQlCNeQTcAJXRumMmrMxJzvkI-WCZ1LAicNPsOs2lxPEjxsuMpIBv7vzlPMmq3xmK3-FSCwbzqW87uveCgBa9OQjdd0s8JjlKwUzIOY6eWaT1kzt-OdJWGDS9yKwr6BDESSrO03FtimKJozB6dnrNqS9tyjp1tufw_C_cvun6f35V-QPvYZAaYven-Mr9WOw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/patients/gp/counts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"patients",
+								"gp",
+								"counts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get batch patients",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2NjM1NjksImlhdCI6MTc2NzY2MzI2OSwiYXV0aF90aW1lIjoxNzY3NjYzMjY5LCJqdGkiOiJvbnJ0YWM6MDAwYTdlOGEtZTJkMy0wODYzLTJhMzUtZDdlN2VlNDIyYzdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiI5Mzc4ZGM2Yy1hNjMyLTg0YmEtNjVhYS1jYzM3Zjc2ZTBhZjgiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.FfZNnm1MX7RDPF7NYDJtv-BDpUa1cSz7LcUzQJOR2WwbcYCm_BJ3vd3Dsh0QwQwTAhkK7wSfKCfPx8UqhTEa8PKnvxiwFjSH-qGhY-1QAyz9FQER2K83NpeJbim1E-c4_gx0kH5MrejccZT-2kp4RgAQlCNeQTcAJXRumMmrMxJzvkI-WCZ1LAicNPsOs2lxPEjxsuMpIBv7vzlPMmq3xmK3-FSCwbzqW87uveCgBa9OQjdd0s8JjlKwUzIOY6eWaT1kzt-OdJWGDS9yKwr6BDESSrO03FtimKJozB6dnrNqS9tyjp1tufw_C_cvun6f35V-QPvYZAaYven-Mr9WOw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/patients/batch?ids=1,2,100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"patients",
+								"batch"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "1,2,100"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "doctor",
+			"item": [
+				{
+					"name": "get all doctors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3MzYyOTIsImlhdCI6MTc2NzczNTk5MiwiYXV0aF90aW1lIjoxNzY3NzM1OTkyLCJqdGkiOiJvbnJ0YWM6ZmRkYmEwMjktZTJlNi1hZjQ1LTFmMmUtNTQ5NTk2OGZlYTMzIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiI0NDg5ZTFhMC1lYTZjLTUxMWMtZTBlZC05YTgwMWVmMDJmOTAiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.Xg8Jqo8SI8fgspPICUXoO9755Y-D8jXBsWD0Seu3xdFhk5lfV55_Rri6b5sjKafuNil3NZ0Kqx8xmQinkDqvj7xVYsL8Olvxt2d2IPaIWrpVk0y0qlO8yP_o1tginAW7JBeYfCN70qFERcLpJyUURyOCnFJnMfyospbHawYWa7dK2y8d0TDCcIYQ3ZM-0FuQTgppzPCXXrd3QrDSwkSHCan3YVEtZpt0gKdh_-Ma2uAbNOIG28MDx0D028T27j_PJejCsxjrAIW5qtoFqyQmpkdafXyV3Q0-WhEyNThNhYeqYmY_f1JELq1AMZoNP3O8Wk3QbXVjW3dwANJKGcaksg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/doctors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create doctor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"keycloakId\": \"2a5b7c3e-dc91-4a23-b5f1-8e72c5a7fcb9\",\r\n    \"specialityIds\": [1],\r\n    \"isGp\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/doctors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get doctor by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3MTc2MTQsImlhdCI6MTc2NzcxNzMxNCwiYXV0aF90aW1lIjoxNzY3NzA4Njc5LCJqdGkiOiJvbnJ0cnQ6YTdkM2JhMjQtYzkzYi1iYzM2LTIyYjEtM2Y4ODNkMGRmMGJkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiIyMDk4NmM2Mi1kMjc0LTJmZDEtZjIzOS00OWQ3Mzc1NzVlMDYiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.iine1u8EW678c_cu4w3jtQfZWlP8thwnK9ZLeHRWlVtNacNI_sQUSGnNo9HRb3YYtuIoG0jqump4P-lafP6XletoHpJQ-67-mpxirZw6-Rg4EVx_y3tGcPJF3VR1y35TXg3d_WKFUso1mgRST-KPp1CBd3IxF90iw7q1qESkTJaCSR6tbCuUKGcpc1ejmyNd9ey5BTRlckIi2MKmufQcpZRTFNweznXtuWQXn5v1t2iLUhlLCtNo_M5P1QuO6hptmsXvMh-j1627rxBSQAJpUSXnWoBG8-Xg_Q6H1VKnPhk4JEtOc4scyreA37_GdQhOyELV6eKR8A7vd5ww4EFcJA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/doctors/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"doctors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update doctor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"specialityIds\": [2, 3]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/doctors/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"doctors",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "speciality",
+			"item": [
+				{
+					"name": "get all specialities",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3NDgwMTcsImlhdCI6MTc2Nzc0NzcxNywiYXV0aF90aW1lIjoxNzY3NzQ1NTc2LCJqdGkiOiJvbnJ0cnQ6NzNhZDc4NGUtYTY2MC1jMjcwLWJmODItZTE1YzA2MDM1MzcyIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJkNmM4MDhhMS05YmI2LWQyZTAtYjk4My03NmMxM2JhODk0NDYiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.HML6Sv3IIXBpUjXEPXMUWzZzuSWzmzlRu-7BFh7ADw6XvUhab6Ohdn422F_MJ7l5MRQhO7BAliNpAOjLqpGPISbzfY9bCPGI8uad_VbJSyVxr5bIkmCIzZ7fdpoq6GQxuRs7ngV2GcddwdqQpPB3WUMaQ8N0HTd7aLIZEm9lOfDalkJ8e-IWbvaAmQ5Te4Dt9fT-kShBZgfNUFBpun5QxIEL1wvmYWS4f-gXT1ZbxKHmRRV79yG9D6W5h7oBI3wS04tolRS9xg9O2ASs_nrVOkrg9Dlj8KkTiNA9VNj0RQ7mX0HTVkubFYedEaVo3-9c0YqMAWBck_y4Cm-dy_4PCw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/specialities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"specialities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create speciality",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3NDgwMTcsImlhdCI6MTc2Nzc0NzcxNywiYXV0aF90aW1lIjoxNzY3NzQ1NTc2LCJqdGkiOiJvbnJ0cnQ6NzNhZDc4NGUtYTY2MC1jMjcwLWJmODItZTE1YzA2MDM1MzcyIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJkNmM4MDhhMS05YmI2LWQyZTAtYjk4My03NmMxM2JhODk0NDYiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.HML6Sv3IIXBpUjXEPXMUWzZzuSWzmzlRu-7BFh7ADw6XvUhab6Ohdn422F_MJ7l5MRQhO7BAliNpAOjLqpGPISbzfY9bCPGI8uad_VbJSyVxr5bIkmCIzZ7fdpoq6GQxuRs7ngV2GcddwdqQpPB3WUMaQ8N0HTd7aLIZEm9lOfDalkJ8e-IWbvaAmQ5Te4Dt9fT-kShBZgfNUFBpun5QxIEL1wvmYWS4f-gXT1ZbxKHmRRV79yG9D6W5h7oBI3wS04tolRS9xg9O2ASs_nrVOkrg9Dlj8KkTiNA9VNj0RQ7mX0HTVkubFYedEaVo3-9c0YqMAWBck_y4Cm-dy_4PCw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Carzdio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/specialities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"specialities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update speciality",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3NDgwMTcsImlhdCI6MTc2Nzc0NzcxNywiYXV0aF90aW1lIjoxNzY3NzQ1NTc2LCJqdGkiOiJvbnJ0cnQ6NzNhZDc4NGUtYTY2MC1jMjcwLWJmODItZTE1YzA2MDM1MzcyIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJkNmM4MDhhMS05YmI2LWQyZTAtYjk4My03NmMxM2JhODk0NDYiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.HML6Sv3IIXBpUjXEPXMUWzZzuSWzmzlRu-7BFh7ADw6XvUhab6Ohdn422F_MJ7l5MRQhO7BAliNpAOjLqpGPISbzfY9bCPGI8uad_VbJSyVxr5bIkmCIzZ7fdpoq6GQxuRs7ngV2GcddwdqQpPB3WUMaQ8N0HTd7aLIZEm9lOfDalkJ8e-IWbvaAmQ5Te4Dt9fT-kShBZgfNUFBpun5QxIEL1wvmYWS4f-gXT1ZbxKHmRRV79yG9D6W5h7oBI3wS04tolRS9xg9O2ASs_nrVOkrg9Dlj8KkTiNA9VNj0RQ7mX0HTVkubFYedEaVo3-9c0YqMAWBck_y4Cm-dy_4PCw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Neuro\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/specialities/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"specialities",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get speciality by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2NjM1NjksImlhdCI6MTc2NzY2MzI2OSwiYXV0aF90aW1lIjoxNzY3NjYzMjY5LCJqdGkiOiJvbnJ0YWM6MDAwYTdlOGEtZTJkMy0wODYzLTJhMzUtZDdlN2VlNDIyYzdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiI5Mzc4ZGM2Yy1hNjMyLTg0YmEtNjVhYS1jYzM3Zjc2ZTBhZjgiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.FfZNnm1MX7RDPF7NYDJtv-BDpUa1cSz7LcUzQJOR2WwbcYCm_BJ3vd3Dsh0QwQwTAhkK7wSfKCfPx8UqhTEa8PKnvxiwFjSH-qGhY-1QAyz9FQER2K83NpeJbim1E-c4_gx0kH5MrejccZT-2kp4RgAQlCNeQTcAJXRumMmrMxJzvkI-WCZ1LAicNPsOs2lxPEjxsuMpIBv7vzlPMmq3xmK3-FSCwbzqW87uveCgBa9OQjdd0s8JjlKwUzIOY6eWaT1kzt-OdJWGDS9yKwr6BDESSrO03FtimKJozB6dnrNqS9tyjp1tufw_C_cvun6f35V-QPvYZAaYven-Mr9WOw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/specialities/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"specialities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "visit",
+			"item": [
+				{
+					"name": "get all visits",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3NDcwNzMsImlhdCI6MTc2Nzc0Njc3MywiYXV0aF90aW1lIjoxNzY3NzQ1NTc2LCJqdGkiOiJvbnJ0cnQ6NjFkYWY0OTctMGIzZC02ODA4LTQ5MGMtZDZkOGQ4OGE0ZDdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJkNmM4MDhhMS05YmI2LWQyZTAtYjk4My03NmMxM2JhODk0NDYiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.VZz50hhulLv8GpkMunN8lw9BT4j6NhWkBsMdmA5Dmx3mWHEa9P9XhHb8I2qJnq2joYWOhsxBmAnacEG3iQRerZuiDPueIFCTjuwy96JTfreJ2XIfhroNxHEtw3WNMBbuWIvvxj9zTxUqgY9aAObVBs9KObSAj3dgtwAbz9vRe6OO9JyxcPgZlG707xzP-21cKAKXwfr6W12LE51zjbG6IHso5JjpGH5mLDYSqiEwMbyA2EGymBkrLwpAt9jYdYdBECpWHnLyOYJJVzO0v7V5WlmUWq80fF-T-1AwlfQeL_Noo2kTNSZF04ZfLW1J6cO_DFKneXXFAeUWqwV7YYMKHQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/visits",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"visits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create visit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2NzE0NDUsImlhdCI6MTc2NzY3MTE0NSwiYXV0aF90aW1lIjoxNzY3NjcxMTQ1LCJqdGkiOiJvbnJ0YWM6OTE5ZTYzNDUtNmUzYi0wY2I4LWMwYmEtZGE0MTk2YWY1ODA1IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJlZjFkNGYwYi03MDdmLWNmNWQtYmZmZC0xOWIzNWNmZmY3OTAiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.CShmC1uJbIv6P2tzc-kz4i75uDjpCj3GKK_9CBUYqocUOOzeqqKx5DhmjEWleiCryCuVoEU7r5FV4kJw7-R13C83YTCgR0Q_eiKz-9RCtNEWOPHqjFRizO92Eb2G-43MrfN4EQjafpz_QfHnU-5wyl5RQSLWvwsNbyzkhk6RR3f8AxbmkJSy2Jr30bU_kkoX37f8RT-UMdXcMrQgffzV_zY89IRHi8FVH-d_YzNZsm5fyptJmAN5le8TJW6um7_e990q8Tm6eNfeVZztjN0eaMQIq8vGmVdAxMQ-3WGEZRmbOTzCy28GskhwskxugbG82P_CyXPlzF3A4_fhqtYa3Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"visitDate\": \"2026-11-25\",\r\n    \"patientId\": 5,\r\n    \"doctorId\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/visits",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"visits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get visit by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3NDcwNzMsImlhdCI6MTc2Nzc0Njc3MywiYXV0aF90aW1lIjoxNzY3NzQ1NTc2LCJqdGkiOiJvbnJ0cnQ6NjFkYWY0OTctMGIzZC02ODA4LTQ5MGMtZDZkOGQ4OGE0ZDdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJkNmM4MDhhMS05YmI2LWQyZTAtYjk4My03NmMxM2JhODk0NDYiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.VZz50hhulLv8GpkMunN8lw9BT4j6NhWkBsMdmA5Dmx3mWHEa9P9XhHb8I2qJnq2joYWOhsxBmAnacEG3iQRerZuiDPueIFCTjuwy96JTfreJ2XIfhroNxHEtw3WNMBbuWIvvxj9zTxUqgY9aAObVBs9KObSAj3dgtwAbz9vRe6OO9JyxcPgZlG707xzP-21cKAKXwfr6W12LE51zjbG6IHso5JjpGH5mLDYSqiEwMbyA2EGymBkrLwpAt9jYdYdBECpWHnLyOYJJVzO0v7V5WlmUWq80fF-T-1AwlfQeL_Noo2kTNSZF04ZfLW1J6cO_DFKneXXFAeUWqwV7YYMKHQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/visits/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"visits",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete visit by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3NDcwNzMsImlhdCI6MTc2Nzc0Njc3MywiYXV0aF90aW1lIjoxNzY3NzQ1NTc2LCJqdGkiOiJvbnJ0cnQ6NjFkYWY0OTctMGIzZC02ODA4LTQ5MGMtZDZkOGQ4OGE0ZDdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJkNmM4MDhhMS05YmI2LWQyZTAtYjk4My03NmMxM2JhODk0NDYiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.VZz50hhulLv8GpkMunN8lw9BT4j6NhWkBsMdmA5Dmx3mWHEa9P9XhHb8I2qJnq2joYWOhsxBmAnacEG3iQRerZuiDPueIFCTjuwy96JTfreJ2XIfhroNxHEtw3WNMBbuWIvvxj9zTxUqgY9aAObVBs9KObSAj3dgtwAbz9vRe6OO9JyxcPgZlG707xzP-21cKAKXwfr6W12LE51zjbG6IHso5JjpGH5mLDYSqiEwMbyA2EGymBkrLwpAt9jYdYdBECpWHnLyOYJJVzO0v7V5WlmUWq80fF-T-1AwlfQeL_Noo2kTNSZF04ZfLW1J6cO_DFKneXXFAeUWqwV7YYMKHQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/visits/13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"visits",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update visit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"diagnosesIds\": [1, 2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/visits/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"visits",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get visits by patient id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2Njc0NzgsImlhdCI6MTc2NzY2NzE3OCwiYXV0aF90aW1lIjoxNzY3NjY3MTczLCJqdGkiOiJvbnJ0cnQ6OWNiNjFhNWYtM2VlOC1lNjljLTk2MzgtMGZkYzlhZDc4MmE5IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiIyOGE1Mjk3MC01Nzc5LWExOGMtZjgxYi1mZjAzZmI4NjIyZTkiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.Pdo6AE6_GH0sIYVilPOhvCTTxhHy0UO7wKUdEVHXR2WO-zt5siwgzZKUaH6xPK-Q8qRhA-UgTxlsYGk8h3jey_eT5it8ZbR8qaYi2OrCDPHzFJE7-NaHFTevA9tjWjpWkcZn9l8L66pCxw9I9-yjcmlqYJ8CK3ywqfEHPszwJYd52FnCFQX_3NkfmglxEfMBpHpR7aU_UCiAoGdbWmGKl_LZzwyW3oCa9AGG6odtpzbMSpSEjbHm05Qftci7J4O-agin8lJRrOBuY3NaWsy9wUw10dXU0t1n2SPedD37njiD4qRqCzn_-X9yBjYG8avIOtmb0W80Ef0ut9tMC8tYFw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/visits/patient/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"visits",
+								"patient",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get visits count of all doctors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2Njc0NzgsImlhdCI6MTc2NzY2NzE3OCwiYXV0aF90aW1lIjoxNzY3NjY3MTczLCJqdGkiOiJvbnJ0cnQ6OWNiNjFhNWYtM2VlOC1lNjljLTk2MzgtMGZkYzlhZDc4MmE5IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiIyOGE1Mjk3MC01Nzc5LWExOGMtZjgxYi1mZjAzZmI4NjIyZTkiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.Pdo6AE6_GH0sIYVilPOhvCTTxhHy0UO7wKUdEVHXR2WO-zt5siwgzZKUaH6xPK-Q8qRhA-UgTxlsYGk8h3jey_eT5it8ZbR8qaYi2OrCDPHzFJE7-NaHFTevA9tjWjpWkcZn9l8L66pCxw9I9-yjcmlqYJ8CK3ywqfEHPszwJYd52FnCFQX_3NkfmglxEfMBpHpR7aU_UCiAoGdbWmGKl_LZzwyW3oCa9AGG6odtpzbMSpSEjbHm05Qftci7J4O-agin8lJRrOBuY3NaWsy9wUw10dXU0t1n2SPedD37njiD4qRqCzn_-X9yBjYG8avIOtmb0W80Ef0ut9tMC8tYFw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/visits/doctor/counts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"visits",
+								"doctor",
+								"counts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all visits in period",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2NjM1NjksImlhdCI6MTc2NzY2MzI2OSwiYXV0aF90aW1lIjoxNzY3NjYzMjY5LCJqdGkiOiJvbnJ0YWM6MDAwYTdlOGEtZTJkMy0wODYzLTJhMzUtZDdlN2VlNDIyYzdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiI5Mzc4ZGM2Yy1hNjMyLTg0YmEtNjVhYS1jYzM3Zjc2ZTBhZjgiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.FfZNnm1MX7RDPF7NYDJtv-BDpUa1cSz7LcUzQJOR2WwbcYCm_BJ3vd3Dsh0QwQwTAhkK7wSfKCfPx8UqhTEa8PKnvxiwFjSH-qGhY-1QAyz9FQER2K83NpeJbim1E-c4_gx0kH5MrejccZT-2kp4RgAQlCNeQTcAJXRumMmrMxJzvkI-WCZ1LAicNPsOs2lxPEjxsuMpIBv7vzlPMmq3xmK3-FSCwbzqW87uveCgBa9OQjdd0s8JjlKwUzIOY6eWaT1kzt-OdJWGDS9yKwr6BDESSrO03FtimKJozB6dnrNqS9tyjp1tufw_C_cvun6f35V-QPvYZAaYven-Mr9WOw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/visits/period?startDate=2024-01-01&endDate=2027-12-31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"visits",
+								"period"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2027-12-31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all visits in period by doctor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3MzYyOTIsImlhdCI6MTc2NzczNTk5MiwiYXV0aF90aW1lIjoxNzY3NzM1OTkyLCJqdGkiOiJvbnJ0YWM6ZmRkYmEwMjktZTJlNi1hZjQ1LTFmMmUtNTQ5NTk2OGZlYTMzIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiI0NDg5ZTFhMC1lYTZjLTUxMWMtZTBlZC05YTgwMWVmMDJmOTAiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.Xg8Jqo8SI8fgspPICUXoO9755Y-D8jXBsWD0Seu3xdFhk5lfV55_Rri6b5sjKafuNil3NZ0Kqx8xmQinkDqvj7xVYsL8Olvxt2d2IPaIWrpVk0y0qlO8yP_o1tginAW7JBeYfCN70qFERcLpJyUURyOCnFJnMfyospbHawYWa7dK2y8d0TDCcIYQ3ZM-0FuQTgppzPCXXrd3QrDSwkSHCan3YVEtZpt0gKdh_-Ma2uAbNOIG28MDx0D028T27j_PJejCsxjrAIW5qtoFqyQmpkdafXyV3Q0-WhEyNThNhYeqYmY_f1JELq1AMZoNP3O8Wk3QbXVjW3dwANJKGcaksg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/visits/doctor/1/period?startDate=2024-01-01&endDate=2027-06-30",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"visits",
+								"doctor",
+								"1",
+								"period"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2027-06-30"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "diagnose",
+			"item": [
+				{
+					"name": "get all diagnoses",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2NjM1NjksImlhdCI6MTc2NzY2MzI2OSwiYXV0aF90aW1lIjoxNzY3NjYzMjY5LCJqdGkiOiJvbnJ0YWM6MDAwYTdlOGEtZTJkMy0wODYzLTJhMzUtZDdlN2VlNDIyYzdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiI5Mzc4ZGM2Yy1hNjMyLTg0YmEtNjVhYS1jYzM3Zjc2ZTBhZjgiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.FfZNnm1MX7RDPF7NYDJtv-BDpUa1cSz7LcUzQJOR2WwbcYCm_BJ3vd3Dsh0QwQwTAhkK7wSfKCfPx8UqhTEa8PKnvxiwFjSH-qGhY-1QAyz9FQER2K83NpeJbim1E-c4_gx0kH5MrejccZT-2kp4RgAQlCNeQTcAJXRumMmrMxJzvkI-WCZ1LAicNPsOs2lxPEjxsuMpIBv7vzlPMmq3xmK3-FSCwbzqW87uveCgBa9OQjdd0s8JjlKwUzIOY6eWaT1kzt-OdJWGDS9yKwr6BDESSrO03FtimKJozB6dnrNqS9tyjp1tufw_C_cvun6f35V-QPvYZAaYven-Mr9WOw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/diagnoses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"diagnoses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create diagnose",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sick\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/diagnoses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"diagnoses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get diagnose by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2NjM1NjksImlhdCI6MTc2NzY2MzI2OSwiYXV0aF90aW1lIjoxNzY3NjYzMjY5LCJqdGkiOiJvbnJ0YWM6MDAwYTdlOGEtZTJkMy0wODYzLTJhMzUtZDdlN2VlNDIyYzdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiI5Mzc4ZGM2Yy1hNjMyLTg0YmEtNjVhYS1jYzM3Zjc2ZTBhZjgiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.FfZNnm1MX7RDPF7NYDJtv-BDpUa1cSz7LcUzQJOR2WwbcYCm_BJ3vd3Dsh0QwQwTAhkK7wSfKCfPx8UqhTEa8PKnvxiwFjSH-qGhY-1QAyz9FQER2K83NpeJbim1E-c4_gx0kH5MrejccZT-2kp4RgAQlCNeQTcAJXRumMmrMxJzvkI-WCZ1LAicNPsOs2lxPEjxsuMpIBv7vzlPMmq3xmK3-FSCwbzqW87uveCgBa9OQjdd0s8JjlKwUzIOY6eWaT1kzt-OdJWGDS9yKwr6BDESSrO03FtimKJozB6dnrNqS9tyjp1tufw_C_cvun6f35V-QPvYZAaYven-Mr9WOw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/diagnoses/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"diagnoses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get patients by diagnose",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3MzYyOTIsImlhdCI6MTc2NzczNTk5MiwiYXV0aF90aW1lIjoxNzY3NzM1OTkyLCJqdGkiOiJvbnJ0YWM6ZmRkYmEwMjktZTJlNi1hZjQ1LTFmMmUtNTQ5NTk2OGZlYTMzIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiI0NDg5ZTFhMC1lYTZjLTUxMWMtZTBlZC05YTgwMWVmMDJmOTAiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.Xg8Jqo8SI8fgspPICUXoO9755Y-D8jXBsWD0Seu3xdFhk5lfV55_Rri6b5sjKafuNil3NZ0Kqx8xmQinkDqvj7xVYsL8Olvxt2d2IPaIWrpVk0y0qlO8yP_o1tginAW7JBeYfCN70qFERcLpJyUURyOCnFJnMfyospbHawYWa7dK2y8d0TDCcIYQ3ZM-0FuQTgppzPCXXrd3QrDSwkSHCan3YVEtZpt0gKdh_-Ma2uAbNOIG28MDx0D028T27j_PJejCsxjrAIW5qtoFqyQmpkdafXyV3Q0-WhEyNThNhYeqYmY_f1JELq1AMZoNP3O8Wk3QbXVjW3dwANJKGcaksg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/diagnoses/patients/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"diagnoses",
+								"patients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get most frequent diagnose",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2NjM1NjksImlhdCI6MTc2NzY2MzI2OSwiYXV0aF90aW1lIjoxNzY3NjYzMjY5LCJqdGkiOiJvbnJ0YWM6MDAwYTdlOGEtZTJkMy0wODYzLTJhMzUtZDdlN2VlNDIyYzdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiI5Mzc4ZGM2Yy1hNjMyLTg0YmEtNjVhYS1jYzM3Zjc2ZTBhZjgiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.FfZNnm1MX7RDPF7NYDJtv-BDpUa1cSz7LcUzQJOR2WwbcYCm_BJ3vd3Dsh0QwQwTAhkK7wSfKCfPx8UqhTEa8PKnvxiwFjSH-qGhY-1QAyz9FQER2K83NpeJbim1E-c4_gx0kH5MrejccZT-2kp4RgAQlCNeQTcAJXRumMmrMxJzvkI-WCZ1LAicNPsOs2lxPEjxsuMpIBv7vzlPMmq3xmK3-FSCwbzqW87uveCgBa9OQjdd0s8JjlKwUzIOY6eWaT1kzt-OdJWGDS9yKwr6BDESSrO03FtimKJozB6dnrNqS9tyjp1tufw_C_cvun6f35V-QPvYZAaYven-Mr9WOw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/diagnoses/most-frequent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"diagnoses",
+								"most-frequent"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sick leave",
+			"item": [
+				{
+					"name": "get all sick leaves",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2NjM1NjksImlhdCI6MTc2NzY2MzI2OSwiYXV0aF90aW1lIjoxNzY3NjYzMjY5LCJqdGkiOiJvbnJ0YWM6MDAwYTdlOGEtZTJkMy0wODYzLTJhMzUtZDdlN2VlNDIyYzdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiI5Mzc4ZGM2Yy1hNjMyLTg0YmEtNjVhYS1jYzM3Zjc2ZTBhZjgiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.FfZNnm1MX7RDPF7NYDJtv-BDpUa1cSz7LcUzQJOR2WwbcYCm_BJ3vd3Dsh0QwQwTAhkK7wSfKCfPx8UqhTEa8PKnvxiwFjSH-qGhY-1QAyz9FQER2K83NpeJbim1E-c4_gx0kH5MrejccZT-2kp4RgAQlCNeQTcAJXRumMmrMxJzvkI-WCZ1LAicNPsOs2lxPEjxsuMpIBv7vzlPMmq3xmK3-FSCwbzqW87uveCgBa9OQjdd0s8JjlKwUzIOY6eWaT1kzt-OdJWGDS9yKwr6BDESSrO03FtimKJozB6dnrNqS9tyjp1tufw_C_cvun6f35V-QPvYZAaYven-Mr9WOw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/sick-leaves",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sick-leaves"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create sick leave",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startDate\": \"2026-11-25\",\r\n    \"days\": 3,\r\n    \"visitId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sick-leaves",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sick-leaves"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get sick leave by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2NjM1NjksImlhdCI6MTc2NzY2MzI2OSwiYXV0aF90aW1lIjoxNzY3NjYzMjY5LCJqdGkiOiJvbnJ0YWM6MDAwYTdlOGEtZTJkMy0wODYzLTJhMzUtZDdlN2VlNDIyYzdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiI5Mzc4ZGM2Yy1hNjMyLTg0YmEtNjVhYS1jYzM3Zjc2ZTBhZjgiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.FfZNnm1MX7RDPF7NYDJtv-BDpUa1cSz7LcUzQJOR2WwbcYCm_BJ3vd3Dsh0QwQwTAhkK7wSfKCfPx8UqhTEa8PKnvxiwFjSH-qGhY-1QAyz9FQER2K83NpeJbim1E-c4_gx0kH5MrejccZT-2kp4RgAQlCNeQTcAJXRumMmrMxJzvkI-WCZ1LAicNPsOs2lxPEjxsuMpIBv7vzlPMmq3xmK3-FSCwbzqW87uveCgBa9OQjdd0s8JjlKwUzIOY6eWaT1kzt-OdJWGDS9yKwr6BDESSrO03FtimKJozB6dnrNqS9tyjp1tufw_C_cvun6f35V-QPvYZAaYven-Mr9WOw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/sick-leaves/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sick-leaves",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get doctor with most sick leaves",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2NjM1NjksImlhdCI6MTc2NzY2MzI2OSwiYXV0aF90aW1lIjoxNzY3NjYzMjY5LCJqdGkiOiJvbnJ0YWM6MDAwYTdlOGEtZTJkMy0wODYzLTJhMzUtZDdlN2VlNDIyYzdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiI5Mzc4ZGM2Yy1hNjMyLTg0YmEtNjVhYS1jYzM3Zjc2ZTBhZjgiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.FfZNnm1MX7RDPF7NYDJtv-BDpUa1cSz7LcUzQJOR2WwbcYCm_BJ3vd3Dsh0QwQwTAhkK7wSfKCfPx8UqhTEa8PKnvxiwFjSH-qGhY-1QAyz9FQER2K83NpeJbim1E-c4_gx0kH5MrejccZT-2kp4RgAQlCNeQTcAJXRumMmrMxJzvkI-WCZ1LAicNPsOs2lxPEjxsuMpIBv7vzlPMmq3xmK3-FSCwbzqW87uveCgBa9OQjdd0s8JjlKwUzIOY6eWaT1kzt-OdJWGDS9yKwr6BDESSrO03FtimKJozB6dnrNqS9tyjp1tufw_C_cvun6f35V-QPvYZAaYven-Mr9WOw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/sick-leaves/top-doctors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sick-leaves",
+								"top-doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get month in year with most sick leaves",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2NjM1NjksImlhdCI6MTc2NzY2MzI2OSwiYXV0aF90aW1lIjoxNzY3NjYzMjY5LCJqdGkiOiJvbnJ0YWM6MDAwYTdlOGEtZTJkMy0wODYzLTJhMzUtZDdlN2VlNDIyYzdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiI5Mzc4ZGM2Yy1hNjMyLTg0YmEtNjVhYS1jYzM3Zjc2ZTBhZjgiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.FfZNnm1MX7RDPF7NYDJtv-BDpUa1cSz7LcUzQJOR2WwbcYCm_BJ3vd3Dsh0QwQwTAhkK7wSfKCfPx8UqhTEa8PKnvxiwFjSH-qGhY-1QAyz9FQER2K83NpeJbim1E-c4_gx0kH5MrejccZT-2kp4RgAQlCNeQTcAJXRumMmrMxJzvkI-WCZ1LAicNPsOs2lxPEjxsuMpIBv7vzlPMmq3xmK3-FSCwbzqW87uveCgBa9OQjdd0s8JjlKwUzIOY6eWaT1kzt-OdJWGDS9yKwr6BDESSrO03FtimKJozB6dnrNqS9tyjp1tufw_C_cvun6f35V-QPvYZAaYven-Mr9WOw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/sick-leaves/most-active-months?year=2026",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sick-leaves",
+								"most-active-months"
+							],
+							"query": [
+								{
+									"key": "year",
+									"value": "2026"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "medicine",
+			"item": [
+				{
+					"name": "get all medicines",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3NDg3NDIsImlhdCI6MTc2Nzc0ODQ0MiwiYXV0aF90aW1lIjoxNzY3NzQ1NTc2LCJqdGkiOiJvbnJ0cnQ6YWFkM2Q3NGQtZmNhNy1iNWQ4LTIyM2EtZDk3NjI4NWM3ZDNjIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJkNmM4MDhhMS05YmI2LWQyZTAtYjk4My03NmMxM2JhODk0NDYiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.SKJhrdbYrPrMF29M3_NkQWpqODnNIUgi1aNefVLuIdG6L-gObWioFPzoXwF3upVEIFlf6doDFzDnH00XCS9-kJbK_eN5xtjbORvAynaN_icV3fsWYeZ_b4_WMQDRhKUtaaCl1IFfxRwRcOxWF7pv3eCLPXVs3wJFaQMC93Rcckl1gJyGDw7K9uRl5d478PQoVgFlHW8uC4jIeo6su1tNjhmAuiyYNk12FQIRryVIKnn_G8Rf7K14U6xb4QaDyUmiJU6vpe2PYftVeboMjjiIgwsmCXV1aZCEvxXydf7mqVAdHK_Q8Flhw3vo012gYE5I0ZdmHSMWS9y3bMTs_192kQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/medicines",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"medicines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create medicine",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3MDg5ODAsImlhdCI6MTc2NzcwODY4MCwiYXV0aF90aW1lIjoxNzY3NzA4Njc5LCJqdGkiOiJvbnJ0YWM6OTg1YzM4ZGItNDcyZi0yNWFkLWEzYTMtZGU3NWM4OWJmZDBiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiIyMDk4NmM2Mi1kMjc0LTJmZDEtZjIzOS00OWQ3Mzc1NzVlMDYiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.dpPvbESL5wOM879c2rIZlcymiAVlnLaZ0vVpmn0aNVVd0KOKiGdiaqy8FwVuyLEfJFr47JxjSTxSSGAV62hN2CEvLJ3E9emZHi5-Cy3Q5fDMLUcSYgRExYDN2zEUq9_GLcJ52Ax3jfhNX2vD5ZmvdlwxYVg97qZSJqRKNQwOBRNhKt7QCYzSfNK_B85jOl_iZXz8Xow2XupLP3GYmq2q7RlsVFMaz8h3P0Pbc0NzjtTEBeChkl9-cruLMcrm9KaKhQk7sQUBdIpmgRCe9KnIxVeAzvkd2gbLZXFSsnVtRcd0TmJB4PcQtJl26qDTpnGVEydEB-VqXwBytQcS0lKl5g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pill\",\r\n    \"manufacturer\": \"Laboratory\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/medicines",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"medicines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update medicine",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3NDg3NDIsImlhdCI6MTc2Nzc0ODQ0MiwiYXV0aF90aW1lIjoxNzY3NzQ1NTc2LCJqdGkiOiJvbnJ0cnQ6YWFkM2Q3NGQtZmNhNy1iNWQ4LTIyM2EtZDk3NjI4NWM3ZDNjIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJkNmM4MDhhMS05YmI2LWQyZTAtYjk4My03NmMxM2JhODk0NDYiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.SKJhrdbYrPrMF29M3_NkQWpqODnNIUgi1aNefVLuIdG6L-gObWioFPzoXwF3upVEIFlf6doDFzDnH00XCS9-kJbK_eN5xtjbORvAynaN_icV3fsWYeZ_b4_WMQDRhKUtaaCl1IFfxRwRcOxWF7pv3eCLPXVs3wJFaQMC93Rcckl1gJyGDw7K9uRl5d478PQoVgFlHW8uC4jIeo6su1tNjhmAuiyYNk12FQIRryVIKnn_G8Rf7K14U6xb4QaDyUmiJU6vpe2PYftVeboMjjiIgwsmCXV1aZCEvxXydf7mqVAdHK_Q8Flhw3vo012gYE5I0ZdmHSMWS9y3bMTs_192kQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pill1\",\r\n    \"manufacturer\": \"Laboratory1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/medicines/695d1865a27ec2e93826a6b5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"medicines",
+								"695d1865a27ec2e93826a6b5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get medicine by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc2NzM1ODcsImlhdCI6MTc2NzY3MzI4NywiYXV0aF90aW1lIjoxNzY3NjcxMTQ1LCJqdGkiOiJvbnJ0cnQ6NzRhY2E5ZmUtMDA1NC00MzU2LTQwOTEtOWRjMTQ1NjI2YzMxIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJlZjFkNGYwYi03MDdmLWNmNWQtYmZmZC0xOWIzNWNmZmY3OTAiLCJhY3IiOiIwIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.NUgYHdB9Z-pffYTAcNTPrysTTzunf1_W0sA2xGNr0K3dE5ENS4ysKuHxpelLHxAW8PlId_FSMaM0VPK93R1gBuy-7Jpfsgn5lKTKDTZqPVUjMEqqCNgkZu1my_4bhZimJli5-pW0FQzj34hPPoA965tk3mVHQcDl0uY6vjZMH6zoSPnULhP1KzPZCSNXJi0Y6Fpi90Re2dg2HFjnGExUpItvuLCUr-rriSffXffGqAShkCdaAF4CeGuZERtEg2PXeWnmieUfBEu4LgHwsuMKh9fQoCu33jOR55TT4JKUZJoMh-SVuFJUC5jIIibXsaT1mJmaHiVFuaGal_DQSCnSVw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/medicines/69544c937bed1dafa15bed37",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"medicines",
+								"69544c937bed1dafa15bed37"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "recipe",
+			"item": [
+				{
+					"name": "get all recipes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3NDU4NzYsImlhdCI6MTc2Nzc0NTU3NiwiYXV0aF90aW1lIjoxNzY3NzQ1NTc2LCJqdGkiOiJvbnJ0YWM6NjkyOWM1YjItY2ZhMS03YzA3LThhZWUtZmJkNDk4ZTI2MDcxIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJkNmM4MDhhMS05YmI2LWQyZTAtYjk4My03NmMxM2JhODk0NDYiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.cUjUKwVVf2LiBSrwH2QJ3lATEw7xb4xjuMLR9Ca4p0hOhm56i742rHQzLkjPOx7iDY7jdM-WXE0paZ4myYFBj8KQ0ZVZ2IKpszdKNQ1in10g98OwV0bndSUJtObWTAaRWGaOUE8FY68Vabiyr5vd-qDozlwlXotiutPyETD14bSeEVLymFQg2g5leZnSzdvsR0qmM71tevAGCVFBRHv4hHaZ_vMgPdvL63eqJ6a11hAxmrgdcoVDrQFDeiwRgL1rgO4Rp63yB0-EeqyMWguUb_Bpc1sLLRkArPhQKZMTh8x2AMTtmVt0i2Eqz7rLiqUtLOx1k348PXa80Cu0tpnYpg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/recipes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create recipe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3NDMxNzAsImlhdCI6MTc2Nzc0Mjg3MCwiYXV0aF90aW1lIjoxNzY3NzQyMTc5LCJqdGkiOiJvbnJ0cnQ6ZTg0YTc2Y2QtZjUxZC1hMTg5LTAxMGMtYTdjYTExYTcyNDIzIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJmZTllZWMzZC02N2U5LTY4OGQtOGIwOC0yODczM2RmY2RlMzUiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.WAIgth_txoV19d-9qIJ9H0xv8oP5QLTtLk-sDLWvhH_9h8Nj-I78-eQYWJ2LcSVKNjze74gtPSelnZIjV6gLH6XJIxv0iZLpEh-A8up6jBIotVIXsSVTXRggQExajg7PDNK86qep5nN7nHFS1xQCT744ZucrK3lwGGymm0PXBF9UiP6mLdync5YMY-3YGLcJ4akn1LPLTtMF0MDhdjuV6VnQfI6crzFSBHdjVgrQrkW8ZfeFsTftPKvOaLXpo7bwNzm8gzJBpTlu53wQQCNLAl4r1XSynACIPh4NWIYuYdl0ZbMdvIbd5u0HmHbuf67vOCJfCKOIloMCN7ng3hU1rg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"prescriptionCode\": \"asd123testTEST\",\r\n    \"dateCreated\": \"2025-10-25\",\r\n    \"doctorId\": 1,\r\n    \"patientId\": 1,\r\n    \"visitId\": 18,\r\n    \"medicines\": [\r\n        {\r\n            \"medicineId\": \"69544c937bed1dafa15bed37\",\r\n            \"dosePerIntake\": 1,\r\n            \"timesPerDay\": 3,\r\n            \"durationDays\": 10,\r\n            \"price\": 10.99\r\n        },\r\n        {\r\n            \"medicineId\": \"695c32ae9bf6d0dd2a261fdf\",\r\n            \"dosePerIntake\": 2,\r\n            \"timesPerDay\": 2,\r\n            \"durationDays\": 14,\r\n            \"price\": 4.99\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/recipes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get recipe by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3NDI0ODAsImlhdCI6MTc2Nzc0MjE4MCwiYXV0aF90aW1lIjoxNzY3NzQyMTc5LCJqdGkiOiJvbnJ0YWM6ZTEwOTA4MmUtNWFmMi04ZjY5LTliMzEtNzZhYTgxM2Y1N2U0IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJmZTllZWMzZC02N2U5LTY4OGQtOGIwOC0yODczM2RmY2RlMzUiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.QkGHBwiYEO0SJfEnDW19P2Rk8WuBQv-sy5urS4_m07Ry3hYTQgTMgIXp3_PuUqOEhGUDQf9sL5m2FeqY7CKRB05fR42Lp8cD8Ks3i5LgNIfLdaISAas_Teu-utdSPE8VY33uj_M2lhs8ka3zlvaiaJJPKiWY5UaOpLsuqTsMxtGBnp0qtNuauEgIReM9fe_UBMYyKfNZWUpFduP_4EYSZqMEx9RBcZCTYOKHD-FiazEXCfYtgL_CU0KuDTsspox6BOPKh3EmRZGcaP5obZMTISuceTjg4tBw3fD8fU8etklLvQdA9NGWJhElNMK8KZK09TVCFSidetwT-c7TxcnoIg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/recipes/695c33029bf6d0dd2a261fe0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recipes",
+								"695c33029bf6d0dd2a261fe0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete recipe by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3bGlCbjROUnd4T0NNUXJnaXk0ZjlmclVrNlN4UnhDdDVnMUhSVDdkVVRFIn0.eyJleHAiOjE3Njc3NDU4NzYsImlhdCI6MTc2Nzc0NTU3NiwiYXV0aF90aW1lIjoxNzY3NzQ1NTc2LCJqdGkiOiJvbnJ0YWM6NjkyOWM1YjItY2ZhMS03YzA3LThhZWUtZmJkNDk4ZTI2MDcxIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgxL3JlYWxtcy9tZWRpY2FsLXJlY29yZHMiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZThhM2ZmYWUtODZkNi00MDJkLTk3YWItYzhjZDQ5NWNhOTAwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFjay1lbmQiLCJzaWQiOiJkNmM4MDhhMS05YmI2LWQyZTAtYjk4My03NmMxM2JhODk0NDYiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZG9jdG9yIiwiZGVmYXVsdC1yb2xlcy1tZWRpY2FsLXJlY29yZHMiLCJwYXRpZW50Iiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoidGVzdCB0ZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJ0ZXN0IiwiZmFtaWx5X25hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QudGVzdCJ9.cUjUKwVVf2LiBSrwH2QJ3lATEw7xb4xjuMLR9Ca4p0hOhm56i742rHQzLkjPOx7iDY7jdM-WXE0paZ4myYFBj8KQ0ZVZ2IKpszdKNQ1in10g98OwV0bndSUJtObWTAaRWGaOUE8FY68Vabiyr5vd-qDozlwlXotiutPyETD14bSeEVLymFQg2g5leZnSzdvsR0qmM71tevAGCVFBRHv4hHaZ_vMgPdvL63eqJ6a11hAxmrgdcoVDrQFDeiwRgL1rgO4Rp63yB0-EeqyMWguUb_Bpc1sLLRkArPhQKZMTh8x2AMTtmVt0i2Eqz7rLiqUtLOx1k348PXa80Cu0tpnYpg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/recipes/695d9da4387f1624515230ec",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"recipes",
+								"695d9da4387f1624515230ec"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "get token",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:8080/login/oauth2/code/back-end",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "FQB5UStTVuU9rbLY1L2vAIKnE6H7leVO",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "back-end",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8081/realms/medical-records/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "http://localhost:8081/realms/medical-records/protocol/openid-connect/auth",
+									"type": "string"
+								},
+								{
+									"key": "state",
+									"value": "state_state",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "auth_token",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/debug/services",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"debug",
+								"services"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
