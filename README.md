@@ -3,6 +3,7 @@
 ## Local Development
 ### Ports (Clients)
 - Eureka Server - 8761
+- Front-end - 5173
 - Keycloak - 8081
 - Zipkin - 9411
 - PgAdmin - 5050
@@ -19,7 +20,7 @@ Docker containers
 ```
 docker-compose up --build -d
 ```
-Microservice project
+Microservices project
 - Open the **backend** folder in IntelliJ IDEA
 - In the **services** folder run the projects in the following order:
     1. config-server
@@ -29,6 +30,19 @@ Microservice project
     5. patient-service
     6. visit-service
     7. prescription-service
+- The API will be available at **http://localhost:8080/api**
+
+Front-end
+- Open the front-end project in Visual Studio Code
+- In the terminal run:
+```
+npm install
+```
+- after the installation of the packages is complete, run:
+```
+npm start
+```
+- The front-end app will be available at **http://localhost:5173**
 ### Setup
 Log in to Keycloak
 - Username or Email: admin
