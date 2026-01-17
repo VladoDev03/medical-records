@@ -72,3 +72,5 @@ Connect to server - PgAdmin
 Log in to MongoExpress
 - admin
 - pass
+## Architecture
+![Architecture](./medical-records.jpg "Complete project architecture")
